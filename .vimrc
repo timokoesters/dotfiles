@@ -1,25 +1,23 @@
-set nocompatible                " Enable advanced features
-filetype plugin indent on       " Automatically detect filetype
-
+set nocompatible                  " Enable advanced features
+filetype off                      
+set rtp+=~/.vim/bundle/Vundle.vim " 
+call vundle#begin()
 " TODO: VUNDLE
 
-syntax enable                   " Enable syntax highlighting
-set background=dark             " Dark background for console
-colorscheme default
+syntax enable                     " Enable syntax highlighting
+set background=dark               " Dark background for console
+colorscheme default               " Use console colorscheme
 
-set mouse=all                   " Enable mouse support in all modes
-set showmatch                   " Highlight matching braces
-set number                      " Show line numbers
+set mouse=a                       " Enable mouse support in all modes
+set showmatch                     " Highlight matching braces
+set number                        " Show line numbers
 
-set softtabstop=2               " 2 Spaces instead of tabs
-set shiftwidth=2                " Align to multiple of 2
-set expandtab                   " Don't compress file using tabs
-set showmatch                   " Highlight matching bracket
+set softtabstop=2                 " 2 Spaces instead of tabs
+set shiftwidth=2                  " Align to multiple of 2
+set expandtab                     " Don't compress file using tabs
+set showmatch                     " Highlight matching bracket
 
-set hlsearch                    " Highlight search results
-
-set background=dark             " Dark background for console
-colorscheme default
+set hlsearch                      " Highlight search results
 
 set history=1000                " Increase history
 set undofile                    " Enable persistent undo
