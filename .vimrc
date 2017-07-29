@@ -1,7 +1,17 @@
 set nocompatible                  " Enable advanced features
-filetype off                      " Disable
-set rtp+=~/.vim/bundle/Vundle.vim
+filetype off                      " Disable filetype detection for Vundle
+
+set rtp+=~/.vim/bundle/Vundle.vim " Add Vundle to runtimepath
 call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'valloric/youcompleteme'
+Plugin 'scrooloose/syntastic'
+
+call vundle#end()            " required 
+filetype plugin indent on    " required
+
 " TODO: VUNDLE
 
 syntax enable                     " Enable syntax highlighting
