@@ -1,6 +1,6 @@
 set nocompatible                  " Enable advanced features
-filetype off                      
-set rtp+=~/.vim/bundle/Vundle.vim " 
+filetype off                      " Disable
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " TODO: VUNDLE
 
