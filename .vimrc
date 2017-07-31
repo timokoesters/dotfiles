@@ -23,6 +23,13 @@ colorscheme default                     " Use console colorscheme
 let g:airline_solarized_bg='dark'       " Dark variant of theme
 let g:airline_theme='solarized'         " Airline theme
 let g:airline_powerline_fonts=1         " Add powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = '☰'
 
 set mouse=a                             " Enable mouse support in all modes
 set showmatch                           " Highlight matching braces
