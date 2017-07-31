@@ -1,5 +1,13 @@
-sudo apt update
-sudo apt upgrade
+echo "source ~/.dotfiles/.vimrc" > "~/.vimrc"
+echo "source ~/.dotfiles/.tmux.conf" > "~/.tmux.conf"
+echo "source ~/.dotfiles/.zshrc" > "~/.zshrc"
 
-sudo apt install htop nethogs vim openssh clang git
-sudo apt install steam gimp inkscape krita
+mkdir "~/.vimundo/"
+mkdir "~/.tmux/"
+mkdir "~/.zsh/"
+
+vim \
+  -c 'PluginInstall' \
+  -c 'TmuxlineSnapshot ~/.tmux/tmuxline' \
+  -c 'PromptlineSnapshot! ~/.zsh/promptline airline' \
+  -c 'qa!'
