@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
-echo "source ~/dotfiles/.vimrc" > "$HOME/.vimrc"
-echo "source ~/dotfiles/.tmux.conf" > "$HOME/.tmux.conf"
-echo "source ~/dotfiles/.zshrc" > "$HOME/.zshrc"
+test -f $HOME/.vimrc \
+  && echo "Found existing .vimrc; Skipping" \
+  || echo "source ~/dotfiles/.vimrc" > "$HOME/.vimrc"
+  
+test -f $HOME/.tmux.conf \
+  && echo "Found existing .tmux.conf; Skipping" \
+  || echo "source ~/dotfiles/.tmux.conf" > "$HOME/.tmux.conf"
+  
+test -f $HOME/.zshrc \
+  && echo "Found existing .zshrc; Skipping" \
+  || echo "source ~/dotfiles/.zshrc" > "$HOME/.zshrc"
 
+mkdir "$HOME/.vim"
 mkdir "$HOME/.vimundo/"
 mkdir "$HOME/.tmux/"
 mkdir "$HOME/.zsh/"
