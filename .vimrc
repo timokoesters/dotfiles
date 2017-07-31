@@ -11,7 +11,8 @@ Plugin 'scrooloose/syntastic'           " Real time syntax checking
 Plugin 'kien/ctrlp.vim'                 " Fuzzy finder
 Plugin 'vim-airline/vim-airline'        " Beautiful status line
 Plugin 'vim-airline/vim-airline-themes' " Themes for airline
-Plugin 'edkolev/tmuxline.vim'           " Tmux prompt generator
+Plugin 'edkolev/tmuxline.vim'           " Tmux statusbar generator
+Plugin 'edkolev/promptline.vim'         " Prompt generator
 
 call vundle#end()                       " End plugin list
 filetype plugin indent on               " Let plugins manage indent
