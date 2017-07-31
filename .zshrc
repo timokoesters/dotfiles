@@ -1,7 +1,9 @@
-autoload -Uz compinit promptinit 
+autoload -Uz compinit promptinit predict-on
 compinit 
 promptinit
+predict-on
 
-setopt COMPLETEALL
+setopt COMPLETE
+setopt CORRECTALL
 
 source ~/.zsh/promptline
