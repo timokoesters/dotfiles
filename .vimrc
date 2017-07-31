@@ -21,7 +21,8 @@ set background=dark                     " Dark background for console
 colorscheme default                     " Use console colorscheme
 
 let g:airline_solarized_bg='dark'       " Dark variant of theme
-AirlineTheme solarized                  " Airline theme
+let g:airline_theme='solarized'         " Airline theme
+let g:airline_powerline_fonts=1         " Add powerline symbols
 
 set mouse=a                             " Enable mouse support in all modes
 set showmatch                           " Highlight matching braces
