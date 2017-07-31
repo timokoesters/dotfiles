@@ -1,10 +1,12 @@
-echo "source ~/dotfiles/.vimrc" > "~/.vimrc"
-echo "source ~/dotfiles/.tmux.conf" > "~/.tmux.conf"
-echo "source ~/dotfiles/.zshrc" > "~/.zshrc"
+#!/usr/bin/env bash
 
-mkdir "~/.vimundo/"
-mkdir "~/.tmux/"
-mkdir "~/.zsh/"
+echo "source ~/dotfiles/.vimrc" > "$HOME/.vimrc"
+echo "source ~/dotfiles/.tmux.conf" > "$HOME/.tmux.conf"
+echo "source ~/dotfiles/.zshrc" > "$HOME/.zshrc"
+
+mkdir "$HOME/.vimundo/"
+mkdir "$HOME/.tmux/"
+mkdir "$HOME/.zsh/"
 
 vim \
   -c 'PluginClean' \
