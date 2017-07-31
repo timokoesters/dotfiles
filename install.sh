@@ -7,6 +7,7 @@ mkdir "~/.tmux/"
 mkdir "~/.zsh/"
 
 vim \
+  -c 'PluginClean' \
   -c 'PluginInstall' \
   -c 'TmuxlineSnapshot ~/.tmux/tmuxline' \
   -c 'PromptlineSnapshot! ~/.zsh/promptline airline' \
