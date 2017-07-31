@@ -9,7 +9,7 @@ Plugin 'tpope/vim-fugitive'             " Git wrapper
 Plugin 'valloric/youcompleteme'         " Code completion
 Plugin 'scrooloose/syntastic'           " Real time syntax checking
 Plugin 'kien/ctrlp.vim'                 " Fuzzy finder
-Plugin 'bling/vim-airline'              " Beautiful status line
+Plugin 'vim-airline/vim-airline'        " Beautiful status line
 Plugin 'vim-airline/vim-airline-themes' " Themes for airline
 
 call vundle#end()                       " End plugin list
