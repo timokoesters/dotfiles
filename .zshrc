@@ -1,7 +1,6 @@
-autoload -Uz compinit promptinit predict-on
+autoload -Uz compinit promptinit
 compinit 
 promptinit
-predict-on
 
 setopt COMPLETEINWORD
 setopt CORRECTALL
