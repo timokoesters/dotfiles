@@ -11,6 +11,7 @@ Plugin 'scrooloose/syntastic'           " Real time syntax checking
 Plugin 'kien/ctrlp.vim'                 " Fuzzy finder
 Plugin 'vim-airline/vim-airline'        " Beautiful status line
 Plugin 'vim-airline/vim-airline-themes' " Themes for airline
+Plugin 'edkolev/tmuxline.vim'           " Tmux prompt generator
 
 call vundle#end()                       " End plugin list
 filetype plugin indent on               " Let plugins manage indent
@@ -18,6 +19,9 @@ filetype plugin indent on               " Let plugins manage indent
 syntax enable                           " Enable syntax highlighting
 set background=dark                     " Dark background for console
 colorscheme default                     " Use console colorscheme
+
+let g:airline_solarized_bg='dark'       " Dark variant of theme
+AirlineTheme solarized                  " Airline theme
 
 set mouse=a                             " Enable mouse support in all modes
 set showmatch                           " Highlight matching braces
