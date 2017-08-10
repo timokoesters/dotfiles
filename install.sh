@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-test -f $HOME/.vimrc \
+test -f $HOME/.config/nvim/init.vim \
   && echo "Found existing .vimrc; Skipping" \
-  || echo "source ~/dotfiles/.vimrc" > "$HOME/.vimrc"
+  || echo "source ~/dotfiles/init.vim" > "$HOME/.config/.nvim/init.vim"
   
 test -f $HOME/.tmux.conf \
   && echo "Found existing .tmux.conf; Skipping" \
@@ -13,6 +13,7 @@ test -f $HOME/.zshrc \
   || echo "source ~/dotfiles/.zshrc" > "$HOME/.zshrc"
 
 mkdir "$HOME/.vim"
+mkdir "$HOME/.config/nvim"
 mkdir "$HOME/.vimundo/"
 mkdir "$HOME/.tmux/"
 mkdir "$HOME/.zsh/"
