@@ -3,6 +3,7 @@ set termguicolors
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'tpope/vim-sensible'             " Default settings
 Plug 'vim-airline/vim-airline'        " Beautiful status line
 Plug 'vim-airline/vim-airline-themes' " Themes for airline
 Plug 'edkolev/tmuxline.vim'           " Tmux statusbar generator
@@ -10,10 +11,19 @@ Plug 'edkolev/promptline.vim'         " Prompt generator
 Plug 'Shougo/deoplete.nvim'           " Asynchronus completion
 Plug 'zchee/deoplete-clang'           " C++ completion
 Plug 'w0rp/ale'                       " Lint engine
+Plug 'morhetz/gruvbox'                " Colorscheme
+Plug 'tpope/vim-fugitive'                 " Git wrapper
+Plug 'tpope/vim-surround'             " All about surroundings
+Plug 'scrooloose/nerdtree'            " File browser
+Plug 'Xuyuanp/nerdtree-git-plugin'    " Git for file browser
+Plug 'airblade/vim-gitgutter'         " Git diff in gutter
 
 call plug#end()
 
-let g:airline_theme='light'             " Airline theme
+set background=dark
+colorscheme gruvbox
+
+let g:airline_theme='badwolf'             " Airline theme
 let g:airline_powerline_fonts=1         " Add powerline symbols
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
