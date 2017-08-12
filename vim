@@ -1,5 +1,5 @@
-set nocompatible
-set termguicolors
+set nocompatible                      " Be iMproved
+set termguicolors                     " Truecolor support
 
 call plug#begin('~/.local/share/nvim/plugged')
 
@@ -21,8 +21,11 @@ Plug 'ervandew/supertab'              " Use tab for completion
 
 call plug#end()
 
-set background=dark
-colorscheme gruvbox
+set background=dark                   " Dark background
+colorscheme gruvbox                   " Colorscheme
+
+set undofile                          " Save undo history in ~/.vimundo
+set undodir=~/.vimundo/               " Set undo directory
 
 let g:airline_theme='badwolf'         " Airline theme
 let g:airline_powerline_fonts=1       " Add powerline symbols
