@@ -41,5 +41,3 @@ alias au='sudo apt update'
 
 source ~/.zsh/promptline
 
-#fortune -a | cowsay -f stegosaurus
-neofetch
