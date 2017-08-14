@@ -1,6 +1,3 @@
-set nocompatible                      " Be iMproved
-set termguicolors                     " Truecolor support
-
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-sensible'             " Default settings
@@ -21,11 +18,31 @@ Plug 'ervandew/supertab'              " Use tab for completion
 
 call plug#end()
 
+set nocompatible                      " Be iMproved
+
+set termguicolors                     " Truecolor support
 set background=dark                   " Dark background
 colorscheme gruvbox                   " Colorscheme
 
 set undofile                          " Save undo history in ~/.vimundo
 set undodir=~/.vimundo/               " Set undo directory
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+set ignorecase
+set smartcase
+
+set number
+set relativenumber
+
+set completeopt-=preview
+
+noremap <F4> :w<CR>:make<CR>
+noremap <F5> :w<CR>:make<CR><CR>:terminal ./main<CR>
+inoremap {<CR>  {<CR>}<Esc>O
+
 
 let g:airline_theme='badwolf'         " Airline theme
 let g:airline_powerline_fonts=1       " Add powerline symbols
@@ -38,11 +55,7 @@ let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-4.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header='/usr/lib/llvm-4.0/lib/clang/'
 call deoplete#enable()
 
-set expandtab
-set tabstop=2
-set shiftwidth=2
-
-noremap <F4> :w<CR>:make<CR>
-noremap <F5> :w<CR>:make<CR><CR>:terminal ./main<CR>
-inoremap {<CR>  {<CR>}<Esc>O
+let g:ale_linters={
+\  'cpp':['clang']
+\}
 
