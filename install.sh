@@ -1,5 +1,14 @@
 #!/usr/bin/env bash
 
+sudo add-apt-repository ppa:neovim-ppa/stable
+sudo apt update
+sudo apt install clang neovim tmux zsh curl python3-pip fonts-powerline
+sudo chsh -s /bin/zsh
+
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+pip3 install --upgrade neovim
+
 test -f $HOME/.config/nvim/init.vim \
   && echo "Found existing .vimrc; Skipping" \
   || echo "source ~/dotfiles/vim" > "$HOME/.config/nvim/init.vim"
