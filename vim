@@ -18,7 +18,7 @@ Plug 'ervandew/supertab'              " Use tab for completion
 
 call plug#end()
 
-set nocompatible                      " Be iMproved
+set nocompatible                      " Be improved
 
 set termguicolors                     " Truecolor support
 set background=dark                   " Dark background
@@ -27,17 +27,17 @@ colorscheme gruvbox                   " Colorscheme
 set undofile                          " Save undo history in ~/.vimundo
 set undodir=~/.vimundo/               " Set undo directory
 
-set expandtab
-set tabstop=2
+set expandtab                         " Insert spaces on tab
+set tabstop=2                         " Number of spaces for tab
 set shiftwidth=2
 
 set ignorecase
 set smartcase
 
-set number
-set relativenumber
+set number                            " Show line numbers
+set relativenumber                    " Make all line numbers except current relative
 
-set completeopt-=preview
+set completeopt-=preview              " Don't open a window for completion previews
 
 noremap <F4> :w<CR>:make<CR>
 noremap <F5> :w<CR>:make<CR><CR>:terminal ./main<CR>
@@ -55,7 +55,7 @@ let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-4.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header='/usr/lib/llvm-4.0/lib/clang/'
 call deoplete#enable()
 
-let g:ale_linters={
+let g:ale_linters={                   " Only use clang linter for c++
 \  'cpp':['clang']
 \}
 
