@@ -55,7 +55,7 @@ let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-4.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header='/usr/lib/llvm-4.0/lib/clang/'
 call deoplete#enable()
 
-let g:ale_linters={                   " Only use clang linter for c++
+let g:ale_linters={
 \  'cpp':['clang']
 \}
 
