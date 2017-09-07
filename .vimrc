@@ -15,8 +15,10 @@ Plug 'scrooloose/nerdtree'            " File browser
 Plug 'Xuyuanp/nerdtree-git-plugin'    " Git for file browser
 Plug 'airblade/vim-gitgutter'         " Git diff in gutter
 Plug 'ervandew/supertab'              " Use tab for completion
+Plug 'ctrlpvim/ctrlp.vim'             " Fuzzy file finder
 
 call plug#end()
+
 
 set nocompatible                      " Be improved
 
@@ -39,9 +41,12 @@ set relativenumber                    " Make all line numbers except current rel
 
 set completeopt-=preview              " Don't open a window for completion previews
 
-noremap <F4> :w<CR>:make<CR>
-noremap <F5> :w<CR>:make<CR><CR>:terminal ./main<CR>
+noremap <F4> :wa<CR>:make<CR>
+noremap <F5> :wa<CR>:make<CR><CR>:terminal ./main.out<CR>
+
 inoremap {<CR>  {<CR>}<Esc>O
+
+map <C-n> :NERDTreeToggle<CR>
 
 
 let g:airline_theme='badwolf'         " Airline theme
@@ -54,6 +59,8 @@ let g:airline_right_alt_sep = ''
 let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-4.0/lib/libclang.so.1'
 let g:deoplete#sources#clang#clang_header='/usr/lib/llvm-4.0/lib/clang/'
 call deoplete#enable()
+
+let g:ale_lint_on_text_changed = 'never'
 
 let g:ale_linters={
 \  'cpp':['clang']
