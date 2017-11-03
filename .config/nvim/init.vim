@@ -26,8 +26,8 @@ inoremap {<CR>  {<CR>}<Esc>O
 set nocompatible                      " Be improved
 
 set termguicolors                     " Truecolor support
-set background=dark                   " Dark background
-colorscheme gruvbox                   " Colorscheme
+"set background=dark                   " Dark background
+"colorscheme gruvbox                   " Colorscheme
 filetype indent on
 
 set undofile                          " Save undo history in ~/.vimundo

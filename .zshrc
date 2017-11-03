@@ -29,15 +29,16 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 setopt correct
 setopt sharehistory
 setopt extendedhistory
-setopt auto_cd
 
 alias ll='ls -la'
 
 alias aa='sudo apt update && sudo apt upgrade'
 alias ai='sudo apt install'
 alias as='apt-cache search'
+alias al-'sudo apt list'
 alias ar='sudo apt remove'
 alias au='sudo apt update'
+alias .='echo cool'
 
 source ~/.zsh/promptline
 
