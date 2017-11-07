@@ -40,5 +40,5 @@ alias ar='sudo apt remove'
 alias au='sudo apt update'
 alias .='echo cool'
 
+export EDITOR=/usr/bin/nvim
 source ~/.zsh/promptline
-
