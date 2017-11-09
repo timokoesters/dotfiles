@@ -41,9 +41,9 @@ let g:ale_linters = {
 \}
 
 
-autocmd filetype python nnoremap <F5> :wa <bar> terminal python3 %:p<CR>
-autocmd filetype cpp nnoremap <F5> :wa <bar> terminal make && %:p:r.out <CR>
-autocmd filetype java nnoremap <F5> :wa <bar> terminal javac %:p && java -cp %:h %:t:r<CR>
+autocmd filetype python nnoremap <CR> :wa <bar> terminal python3 %:p<CR>
+autocmd filetype cpp nnoremap <CR> :wa <bar> terminal make && %:p:r<CR>
+autocmd filetype java nnoremap <CR> :wa <bar> terminal javac %:p && java -cp %:h %:t:r<CR>
 
 
 inoremap {<CR>  {<CR>}<Esc>O
