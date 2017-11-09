@@ -30,6 +30,7 @@ setopt correct
 setopt sharehistory
 setopt extendedhistory
 
+alias ls='ls --color'
 alias ll='ls -la'
 
 alias aa='sudo apt update && sudo apt upgrade'
@@ -38,7 +39,8 @@ alias as='apt-cache search'
 alias al-'sudo apt list'
 alias ar='sudo apt remove'
 alias au='sudo apt update'
-alias .='echo cool'
+
+alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 
 export EDITOR=/usr/bin/nvim
 source ~/.zsh/promptline
