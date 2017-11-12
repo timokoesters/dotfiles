@@ -1,3 +1,5 @@
+include /etc/sway/config.d/*
+
 ### Variables
 #
 # Mod4 for Super key; Mod1 for Alt.
@@ -8,14 +10,14 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term konsole
+set $term termite
 # Your preferred application launcher
 set $menu dmenu_run
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/sway/)
-output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg ~/Downloads/Untitled.png #/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -37,20 +39,27 @@ output * bg /usr/share/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-export XKB_DEFAULT_OPTIONS=caps:escape
+# No Window Decorations for new windows
+default_border pixel
 
 ### Key bindings
 #
 # Basics:
 #
-# start a terminal
+# Start a terminal
 bindsym $mod+Return exec $term
 
-# kill focused window
+# Kill focused window
 bindsym $mod+Shift+q kill
 
-# start your launcher
+# Start your launcher
 bindsym $mod+d exec $menu
+
+# Fn-Keys
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86KbdBrightnessDown exec brightnessctl -d asus::kbd_backlight set 10%-
+bindsym XF86KbdBrightnessUp exec brightnessctl -d asus::kbd_backlight set 10%+
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -182,20 +191,19 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
+  status_command i3status
   position top
     colors {
-      statusline #ffffff
-        background #323232
+      statusline #fbf1c7
+        background #1d2021
         inactive_workspace #32323200 #32323200 #5c5c5c
     }
 }
 
-include /etc/sway/config.d/*
+gaps inner 30
+gaps outer 10
 
-                             gaps inner 30
-                             gaps outer 10
-
-                             input 1267:12341:ELAN1301:00_04F3:3035_To {
-                             natural_scroll enabled
-                             tap enabled
-                             }
+input 1267:12341:ELAN1301:00_04F3:3035_To {
+  natural_scroll enabled
+    tap enabled
+}

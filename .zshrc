@@ -43,4 +43,6 @@ alias au='sudo apt update'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 
 export EDITOR=/usr/bin/nvim
+export XKB_DEFAULT_OPTIONS=caps:escape
+
 source ~/.zsh/promptline
