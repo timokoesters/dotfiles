@@ -13,6 +13,8 @@ Plug 'vim-airline/vim-airline' " Status bar
 Plug 'vim-airline/vim-airline-themes' "Status bar themes
 Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " All about surroundings
+Plug 'edkolev/promptline.vim' " Generate shell prompt
+Plug 'dylanaraps/wal.vim' " Automatic colorscheme
 
 call plug#end()
 
@@ -42,11 +44,7 @@ let g:ale_linters = {
 
 
 autocmd filetype python nnoremap <CR> :wa <bar> terminal python3 %:p<CR>
-<<<<<<< Updated upstream
-autocmd filetype cpp nnoremap <CR> :wa <bar> terminal make && %:p:r:out<CR>
-=======
 autocmd filetype cpp nnoremap <CR> :wa <bar> terminal make && %:p:r.out<CR>
->>>>>>> Stashed changes
 autocmd filetype java nnoremap <CR> :wa <bar> terminal javac %:p && java -cp %:h %:t:r<CR>
 
 

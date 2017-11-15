@@ -1,4 +1,5 @@
 include /etc/sway/config.d/*
+include $HOME/.cache/wal/colors-sway
 
 ### Variables
 #
@@ -12,12 +13,12 @@ set $right l
 # Your preferred terminal emulator
 set $term termite
 # Your preferred application launcher
-set $menu dmenu_run
+set $menu dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"
 
 ### Output configuration
 #
-# Default wallpaper (more resolutions are available in /usr/share/sway/)
-output * bg ~/Downloads/Untitled.png #/usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg $wallpaper fill
+
 #
 # Example configuration:
 #
@@ -39,8 +40,11 @@ output * bg ~/Downloads/Untitled.png #/usr/share/backgrounds/sway/Sway_Wallpaper
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-# No Window Decorations for new windows
-default_border pixel
+# Window Decorations for new windows
+default_border pixel 5
+client.focused $color0 $background $foreground $color7 $color0
+client.unfocused $color0 $background $foreground $color7 $color0
+client.focused_inactive $color0 $background $foreground $color7 $color0
 
 ### Key bindings
 #
@@ -60,6 +64,9 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
 bindsym XF86KbdBrightnessDown exec brightnessctl -d asus::kbd_backlight set 10%-
 bindsym XF86KbdBrightnessUp exec brightnessctl -d asus::kbd_backlight set 10%+
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -192,18 +199,24 @@ bindsym $mod+r mode "resize"
 # Read `man 5 sway-bar` for more information about this section.
 bar {
   status_command i3status
-  position top
+    position top
+    font inconsolata 10
     colors {
-      statusline #fbf1c7
-        background #1d2021
-        inactive_workspace #32323200 #32323200 #5c5c5c
+      statusline $foreground
+        background $background
+        focused_workspace $color1 $background $foreground
+        active_workspace $background $background $foreground
+        inactive_workspace $background $background $foreground
     }
 }
 
-gaps inner 30
-gaps outer 10
+gaps inner 25
+gaps outer 0
+hide_edge_borders smart
 
 input 1267:12341:ELAN1301:00_04F3:3035_To {
   natural_scroll enabled
     tap enabled
 }
+
+exec wal -R
