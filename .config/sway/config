@@ -253,5 +253,6 @@ input 1267:12341:ELAN1301:00_04F3:3035_To {
     tap enabled
 }
 
+exec /usr/lib/kdeconnectd
 # Pywal colorscheme
 #exec wal -R
