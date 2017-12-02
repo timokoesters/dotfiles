@@ -15,6 +15,7 @@ Plug 'tpope/vim-fugitive' " Git wrapper
 Plug 'tpope/vim-surround' " All about surroundings
 Plug 'edkolev/promptline.vim' " Generate shell prompt
 Plug 'dylanaraps/wal.vim' " Automatic colorscheme
+Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -27,14 +28,12 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
-let g:deoplete#sources#clang#libclang_path='/usr/lib/llvm-4.0/lib/libclang.so.1'
-let g:deoplete#sources#clang#clang_header='/usr/lib/llvm-4.0/lib/clang/'
-let g:deoplete#disable_auto_complete = 1
+let g:deoplete#sources#clang#libclang_path='/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header='/usr/lib/clang/'
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
 
 let g:deoplete#enable_at_startup = 1
 
@@ -42,22 +41,33 @@ let g:ale_linters = {
 \   'cpp': ['clang', 'clangtidy', 'cppcheck', 'cpplint', 'g++']
 \}
 
+let g:vimtex_view_general_viewer = 'qpdfview'
+let g:vimtex_view_general_options
+      \ = '--unique @pdf\#src:@tex:@line:@col'
+let g:vimtex_view_general_options_latexmk = '--unique'
 
-autocmd filetype python nnoremap <CR> :wa <bar> terminal python3 %:p<CR>
-autocmd filetype cpp nnoremap <CR> :wa <bar> terminal make && %:p:r.out<CR>
-autocmd filetype java nnoremap <CR> :wa <bar> terminal javac %:p && java -cp %:h %:t:r<CR>
+
+
+autocmd filetype python nnoremap <CR> :wa <bar> vsplit +terminal\ python3\ %:p<CR>
+autocmd filetype cpp nnoremap <CR> :wa <bar> vsplit +terminal make && %:p:r.out<CR>
+autocmd filetype java nnoremap <CR> :wa <bar> vsplit +terminal javac %:p && java -cp %:h %:t:r<CR>
+autocmd filetype haskell nnoremap <CR> :wa <bar> vsplit +terminal ghc %:p && %:p:r<CR>
 
 
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
 inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+tnoremap <Esc> <C-\><C-n>
 
 
-set nocompatible " Be IMproved
+set nocompatible " Be iMproved
 
 set termguicolors " Truecolor support
 set background=dark " Dark colors
 colorscheme gruvbox " Colorscheme
+highlight Normal ctermfg=NONE
+highlight clear SignColumn 
+
 filetype indent on
 
 set undofile " Save undo history in ~/.vimundo

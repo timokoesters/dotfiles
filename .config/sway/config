@@ -1,23 +1,52 @@
 include /etc/sway/config.d/*
-include $HOME/.cache/wal/colors-sway
+
+# Pywal colorscheme
+#include $HOME/.cache/wal/colors-sway
+set $wallpaper $HOME/.config/sway/wallpaper
+
+set $background #1d2021
+set $foreground #fbf1c7
+
+set $color0 #cc241d
+set $color1 #98971a
+set $color2 #d79921
+set $color3 #98971a
+set $color4 #458588
+set $color5 #b16286
+set $color6 #689d6a
+set $color7 #a89984
+set $color8 #928374
+set $color9 #fb4934
+set $color10 #b8bb26
+set $color11 #fabd2f
+set $color12 #83a598
+set $color13 #d3869b
+set $color14 #8ec07c
+set $color15 #fbf1c7
+set $special0 #d65d0e
+set $special1 #fe8019
+set $transparent #000000FF
 
 ### Variables
 #
 # Mod4 for Super key; Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+#
 # Your preferred terminal emulator
 set $term termite
+#
 # Your preferred application launcher
-set $menu dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"
+set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$foreground"
 
 ### Output configuration
 #
-output * bg $wallpaper fill
+output * bg $wallpaper tile
 
 #
 # Example configuration:
@@ -41,32 +70,45 @@ output * bg $wallpaper fill
 # Read `man 5 sway-input` for more information about this section.
 
 # Window Decorations for new windows
-default_border pixel 5
-client.focused $color0 $background $foreground $color7 $color0
-client.unfocused $color0 $background $foreground $color7 $color0
-client.focused_inactive $color0 $background $foreground $color7 $color0
+default_border pixel
+
+# Colorscheme
+client.focused $transparent $background $foreground $special1 $special1
+client.unfocused $transparent $background $foreground $color7 $background
+client.focused_inactive $transparent $background $foreground $color7 $background
 
 ### Key bindings
-#
-# Basics:
-#
+
 # Start a terminal
 bindsym $mod+Return exec $term
 
 # Kill focused window
 bindsym $mod+Shift+q kill
 
-# Start your launcher
+# Start launcher
 bindsym $mod+d exec $menu
+bindsym $mod+semicolon exec $menu
 
 # Fn-Keys
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
-bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
-bindsym XF86KbdBrightnessDown exec brightnessctl -d asus::kbd_backlight set 10%-
-bindsym XF86KbdBrightnessUp exec brightnessctl -d asus::kbd_backlight set 10%+
+bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym Shift+XF86MonBrightnessUp exec brightnessctl set 1%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86KbdBrightnessDown exec brightnessctl -d asus::kbd_backlight set 1-
+bindsym XF86KbdBrightnessUp exec brightnessctl -d asus::kbd_backlight set 1+
+
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioMute exec pactl set-sink-mute 16 toggle
+
+# Lock screen
+bindsym pause exec swaylock -c 000000AA --font inconsolata --indicator-radius 100 --indicator-thickness 20 --linecolor 000000 --insidecolor 337D00BF
+
+# Disable gaps
+bindsym $mod+Shift+g gaps inner 0
+bindsym $mod+g gaps inner 25
+bindsym $mod+Shift+y border none
+bindsym $mod+y border pixel
 
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -88,22 +130,13 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-# or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
 
 # _move_ the focused window with the same, but add Shift
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-# ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+
 #
 # Workspaces:
 #
@@ -198,25 +231,27 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-  status_command i3status
+    status_command i3status
     position top
-    font inconsolata 10
+    font inconsolata 9
+
     colors {
-      statusline $foreground
+        statusline $foreground
         background $background
-        focused_workspace $color1 $background $foreground
-        active_workspace $background $background $foreground
+        focused_workspace $special1 $background $foreground
+        active_workspace $special1 $background $foreground
         inactive_workspace $background $background $foreground
     }
 }
 
 gaps inner 25
 gaps outer 0
-hide_edge_borders smart
+gaps edge_gaps on
 
 input 1267:12341:ELAN1301:00_04F3:3035_To {
-  natural_scroll enabled
+    scroll_method edge
     tap enabled
 }
 
-exec wal -R
+# Pywal colorscheme
+#exec wal -R

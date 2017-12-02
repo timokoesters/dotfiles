@@ -31,7 +31,7 @@ setopt sharehistory
 setopt extendedhistory
 
 alias ls='ls --color'
-alias ll='ls -la'
+alias ll='ls --color -lah'
 
 alias aa='sudo apt update && sudo apt upgrade'
 alias ai='sudo apt install'
@@ -43,4 +43,5 @@ alias au='sudo apt update'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 
 source ~/.zsh/promptline
-(wal -r -t&)
+# Pywal colorscheme
+#(wal -r -t&)
