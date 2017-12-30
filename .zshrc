@@ -30,6 +30,17 @@ setopt correct
 setopt sharehistory
 setopt extendedhistory
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey '\e[1~'   beginning-of-line  # Linux console
+bindkey '\e[H'    beginning-of-line  # xterm
+bindkey '\eOH'    beginning-of-line  # gnome-terminal
+bindkey '\e[2~'   overwrite-mode     # Linux console, xterm, gnome-terminal
+bindkey '\e[3~'   delete-char        # Linux console, xterm, gnome-terminal
+bindkey '\e[4~'   end-of-line        # Linux console
+bindkey '\e[F'    end-of-line        # xterm
+bindkey '\eOF'    end-of-line        # gnome-terminal<Paste>
+
 alias ls='ls --color'
 alias ll='ls --color -lah'
 
@@ -39,9 +50,14 @@ alias as='apt-cache search'
 alias al-'sudo apt list'
 alias ar='sudo apt remove'
 alias au='sudo apt update'
+alias pa='sudo pacman -Syyu --noconfirm'
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
+alias android-studio='export _JAVA_AWT_WM_NONREPARENTING=1 && android-studio'
 
-source ~/.zsh/promptline
+alias ssh_pi='ssh lucky0.ddns.net'
+alias sshfs_pi='sshfs lucky0.ddns.net /media/playlucky/lucky0.ddns.net/'
+
+source $HOME/.zsh/promptline
 # Pywal colorscheme
 #(wal -r -t&)

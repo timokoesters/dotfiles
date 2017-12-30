@@ -1,12 +1,10 @@
 include /etc/sway/config.d/*
-
-# Pywal colorscheme
-#include $HOME/.cache/wal/colors-sway
+# Variables {{{
 set $wallpaper $HOME/.config/sway/wallpaper
 
+# {{{ Color definitions
 set $background #1d2021
 set $foreground #fbf1c7
-
 set $color0 #cc241d
 set $color1 #98971a
 set $color2 #d79921
@@ -26,60 +24,82 @@ set $color15 #fbf1c7
 set $special0 #d65d0e
 set $special1 #fe8019
 set $transparent #000000FF
+# }}}
 
-### Variables
-#
-# Mod4 for Super key; Mod1 for Alt.
 set $mod Mod4
 
-# Home row direction keys, like vim
+# Window movement
 set $left h
 set $down j
 set $up k
 set $right l
-#
-# Your preferred terminal emulator
+
+# terminal
 set $term termite
-#
-# Your preferred application launcher
+
+# Application launcher
 set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$foreground"
 
-### Output configuration
-#
+# Screenshot
+set $screenshot swaygrab $HOME/Documents/screenshot.png
+
+# Lock screen
+set $lock $screenshot && mogrify -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500% $HOME/Documents/screenshot.png && \
+swaylock \
+-i $HOME/Documents/screenshot.png \
+--textcolor 00000000 \
+--font inconsolata \
+--bshlcolor fb4934 \
+--keyhlcolor fe8019 \
+--insidecolor 1d2021 \
+--ringcolor 1d2021 \
+--insidevercolor 1d2021 \
+--ringvercolor fe8019 \
+--insidewrongcolor 1d2021 \
+--ringwrongcolor fb4934 \
+--separatorcolor 00000000 \
+--indicator-radius 200 \
+--indicator-thickness 25 \
+-s
+# }}}
+# Settings {{{
+# Wallpaper
 output * bg $wallpaper tile
 
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
-# Window Decorations for new windows
+# Border around windows
 default_border pixel
 
-# Colorscheme
+# Drag windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+floating_modifier $mod normal
+
+# Colorscheme for borders
 client.focused $transparent $background $foreground $special1 $special1
 client.unfocused $transparent $background $foreground $color7 $background
 client.focused_inactive $transparent $background $foreground $color7 $background
 
-### Key bindings
+# Gaps
+gaps inner 25
+gaps outer 0
+gaps edge_gaps on
 
-# Start a terminal
+# Laptop touchpad
+input 1267:12341:ELAN1301:00_04F3:3035_To {
+    scroll_method edge
+    tap enabled
+    dwt disabled
+}
+# }}}
+# Key bindings {{{
+# Application bindings
+bindsym $mod+Control+r exec $term -e ranger
+bindsym $mod+Control+q exec qutebrowser
+bindsym $mod+Control+h exec $term -e htop
+bindsym $mod+Control+c exec $term -e cava
+bindsym $mod+Control+s exec spotify
+bindsym $mod+Control+n exec $term -e "nvim $HOME/Documents/notes"
+
+# Start terminal
 bindsym $mod+Return exec $term
 
 # Kill focused window
@@ -89,20 +109,25 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
 bindsym $mod+semicolon exec $menu
 
-# Fn-Keys
+# Monitor brightness
 bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 1%-
 bindsym Shift+XF86MonBrightnessUp exec brightnessctl set 1%+
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# Keyboard brightness
 bindsym XF86KbdBrightnessDown exec brightnessctl -d asus::kbd_backlight set 1-
 bindsym XF86KbdBrightnessUp exec brightnessctl -d asus::kbd_backlight set 1+
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
-bindsym XF86AudioMute exec pactl set-sink-mute 16 toggle
+# Volume
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%-
+bindsym Shift+XF86AudioRaiseVolume exec amixer -q sset Master 1%+
+bindsym Shift+XF86AudioLowerVolume exec amixer -q sset Master 1%-
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # Lock screen
-bindsym pause exec swaylock -c 000000AA --font inconsolata --indicator-radius 100 --indicator-thickness 20 --linecolor 000000 --insidecolor 337D00BF
+bindsym pause exec $lock
 
 # Disable gaps
 bindsym $mod+Shift+g gaps inner 0
@@ -110,37 +135,40 @@ bindsym $mod+g gaps inner 25
 bindsym $mod+Shift+y border none
 bindsym $mod+y border pixel
 
-# Drag floating windows by holding down $mod and left mouse button.
-# Resize them with right mouse button + $mod.
-# Despite the name, also works for non-floating windows.
-# Change normal to inverse to use left mouse button for resizing and right
-# mouse button for dragging.
-floating_modifier $mod normal
+# Screenshot
+bindsym Print exec $screenshot
 
-# reload the configuration file
+# Power Button
+bindsym XF86PowerOff exec systemctl suspend
+bindsym Control+XF86PowerOff exec systemctl poweroff
+
+# Reload configuration
 bindsym $mod+Shift+c reload
 
-# exit sway (logs you out of your wayland session)
+# Exit sway
 bindsym $mod+Shift+e exit
-#
-# Moving around:
-#
-# Move your focus around
+
+# Move focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-# _move_ the focused window with the same, but add Shift
+# Move focused window
 bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-#
-# Workspaces:
-#
-# switch to workspace
+# Switch workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
 bindsym $mod+3 workspace 3
@@ -151,7 +179,8 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
-# move focused container to workspace
+
+# Move focused window to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+2 move container to workspace 2
 bindsym $mod+Shift+3 move container to workspace 3
@@ -162,74 +191,36 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
-# Note: workspaces can have any name you want, not just numbers.
-# We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-# You can "split" the current object of your focus with
-# $mod+b or $mod+v, for horizontal and vertical splits
-# respectively.
+
+# Split direction
 bindsym $mod+b splith
 bindsym $mod+v splitv
 
-# Switch the current container between different layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# Make the current focus fullscreen
+# Make window fullscreen
 bindsym $mod+f fullscreen
 
-# Toggle the current focus between tiling and floating mode
+# Toggle focused window between tiled and floating mode
 bindsym $mod+Shift+space floating toggle
 
-# Swap focus between the tiling area and the floating area
+# Toggle focus between tiled and floating windows
 bindsym $mod+space focus mode_toggle
 
-# move focus to the parent container
-bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
-
-# Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
 mode "resize" {
-# left will shrink the containers width
-# right will grow the containers width
-# up will shrink the containers height
-# down will grow the containers height
-  bindsym $left resize shrink width 10 px or 10 ppt
+    bindsym $left resize shrink width 10 px or 10 ppt
     bindsym $down resize grow height 10 px or 10 ppt
     bindsym $up resize shrink height 10 px or 10 ppt
     bindsym $right resize grow width 10 px or 10 ppt
-
-# ditto, with arrow keys
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
     bindsym Right resize grow width 10 px or 10 ppt
 
-# return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
+# }}}
+# Status bar {{{
 bar {
     status_command i3status
     position top
@@ -243,16 +234,15 @@ bar {
         inactive_workspace $background $background $foreground
     }
 }
+# }}}
+# Startup applications {{{
+# Start kdeconnect on each reload
+# (When executed while running nothing happens)
+exec_always /usr/lib/kdeconnectd
 
-gaps inner 25
-gaps outer 0
-gaps edge_gaps on
+# Start notification daemon
+exec /usr/bin/dunst
 
-input 1267:12341:ELAN1301:00_04F3:3035_To {
-    scroll_method edge
-    tap enabled
-}
-
-exec /usr/lib/kdeconnectd
-# Pywal colorscheme
+# Pywal colorscheme on reload
 #exec wal -R
+# }}}

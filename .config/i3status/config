@@ -21,10 +21,11 @@ order += "battery all"
 
 volume master {
         format = " Volume: %volume "
+        format_muted = " Volume: Muted (%volume) "
 }
 
 wireless _first_ {
-        format_up = " Wifi: %essid "
+        format_up = " Wifi: %essid%quality %bitrate "
         format_down = ""
 }
 

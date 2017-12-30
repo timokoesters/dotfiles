@@ -1,23 +1,5 @@
 #!/bin/sh
 
-rm $HOME/.zshrc \
-  $HOME/.tmux.conf \
-  $HOME/.emacs \
-  $HOME/.emacs.d/init.el \
-  $HOME/.config/sway/config \
-  $HOME/.config/nvim/init.vim \
-  $HOME/.local/share/konsole/gruvbox.colorscheme \
-  $HOME/.tmux/tmuxline \
-  $HOME/.zsh/promptline \
-  $HOME/.config/ranger/bookmarks \
-  $HOME/.config/ranger/commands \
-  $HOME/.config/ranger/rc.conf \
-  $HOME/.config/ranger/scope.sh \
-  $HOME/.config/i3status/config \
-  $HOME/.config/termite/config \
-  $HOME/.zprofile \
-  $HOME/.zshenv
-
 ln -s $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -s $HOME/dotfiles/.tmux.conf $HOME/.tmux.conf
 ln -s $HOME/dotfiles/.emacs $HOME/.emacs
