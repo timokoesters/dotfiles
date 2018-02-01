@@ -56,8 +56,8 @@ alias pi='sudo pacman -Sy'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 alias android-studio='export _JAVA_AWT_WM_NONREPARENTING=1 && android-studio'
 
-alias ssh_pi='ssh lucky0.ddns.net'
-alias sshfs_pi='sshfs lucky0.ddns.net /media/playlucky/lucky0.ddns.net/'
+alias sshpi='ssh koesters.ddns.net'
+alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
 
 alias tintin='tintin $HOME/.config/tintin/run.tin'
 
