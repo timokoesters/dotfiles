@@ -51,12 +51,15 @@ alias al-'sudo apt list'
 alias ar='sudo apt remove'
 alias au='sudo apt update'
 alias pa='sudo pacman -Syyu --noconfirm'
+alias pi='sudo pacman -Sy'
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 alias android-studio='export _JAVA_AWT_WM_NONREPARENTING=1 && android-studio'
 
 alias ssh_pi='ssh lucky0.ddns.net'
 alias sshfs_pi='sshfs lucky0.ddns.net /media/playlucky/lucky0.ddns.net/'
+
+alias tintin='tintin $HOME/.config/tintin/run.tin'
 
 source $HOME/.zsh/promptline
 # Pywal colorscheme

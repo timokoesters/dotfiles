@@ -44,7 +44,9 @@ set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$fo
 set $screenshot swaygrab $HOME/Documents/screenshot.png
 
 # Lock screen
-set $lock $screenshot && mogrify -filter Gaussian -resize 20% -define filter:sigma=1.5 -resize 500% $HOME/Documents/screenshot.png && \
+set $lock $screenshot && mogrify -filter Gaussian \
+-resize 20% -define filter:sigma=1.5 \
+-resize 500% $HOME/Documents/screenshot.png && \
 swaylock \
 -i $HOME/Documents/screenshot.png \
 --textcolor 00000000 \
@@ -97,7 +99,7 @@ bindsym $mod+Control+q exec qutebrowser
 bindsym $mod+Control+h exec $term -e htop
 bindsym $mod+Control+c exec $term -e cava
 bindsym $mod+Control+s exec spotify
-bindsym $mod+Control+n exec $term -e "nvim $HOME/Documents/notes"
+bindsym $mod+Control+n exec $term -e "nvim $HOME/Documents/notes.txt"
 
 # Start terminal
 bindsym $mod+Return exec $term
