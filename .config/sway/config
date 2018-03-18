@@ -87,9 +87,10 @@ gaps edge_gaps on
 
 # Laptop touchpad
 input 1267:12341:ELAN1301:00_04F3:3035_To {
+    middle_emulation enabled
     scroll_method edge
     tap enabled
-    dwt disabled
+    dwt enabled
 }
 # }}}
 # Key bindings {{{
@@ -207,6 +208,9 @@ bindsym $mod+Shift+space floating toggle
 # Toggle focus between tiled and floating windows
 bindsym $mod+space focus mode_toggle
 
+# Emulate middle mouse button
+#bindsym Alt+button1 exec termite
+
 mode "resize" {
     bindsym $left resize shrink width 10 px or 10 ppt
     bindsym $down resize grow height 10 px or 10 ppt
@@ -241,6 +245,9 @@ bar {
 # Start kdeconnect on each reload
 # (When executed while running nothing happens)
 exec_always /usr/lib/kdeconnectd
+
+# Start mounting daemon
+exec /usr/bin/udiskie
 
 # Start notification daemon
 exec /usr/bin/dunst
