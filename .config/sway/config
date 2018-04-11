@@ -23,7 +23,8 @@ set $color14 #8ec07c
 set $color15 #fbf1c7
 set $special0 #d65d0e
 set $special1 #fe8019
-set $transparent #000000FF
+set $transparent #00000000
+set $bar_bg #00000040
 # }}}
 
 set $mod Mod4
@@ -66,10 +67,10 @@ swaylock \
 # }}}
 # Settings {{{
 # Wallpaper
-output * bg $wallpaper tile
+output * bg $wallpaper fill
 
 # Border around windows
-default_border pixel
+default_border pixel 0
 
 # Drag windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -83,7 +84,6 @@ client.focused_inactive $transparent $background $foreground $color7 $background
 # Gaps
 gaps inner 25
 gaps outer 0
-gaps edge_gaps on
 
 # Laptop touchpad
 input 1267:12341:ELAN1301:00_04F3:3035_To {
@@ -133,10 +133,8 @@ bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym pause exec $lock
 
 # Disable gaps
-bindsym $mod+Shift+g gaps inner 0
-bindsym $mod+g gaps inner 25
-bindsym $mod+Shift+y border none
-bindsym $mod+y border pixel
+bindsym $mod+g gaps inner 0; gaps outer 0
+bindsym $mod+Shift+g gaps inner 0; gaps outer 40
 
 # Screenshot
 bindsym Print exec $screenshot
@@ -234,10 +232,10 @@ bar {
 
     colors {
         statusline $foreground
-        background $background
-        focused_workspace $special1 $background $foreground
-        active_workspace $special1 $background $foreground
-        inactive_workspace $background $background $foreground
+        background $bar_bg
+        focused_workspace $special1 $bar_bg $foreground
+        active_workspace $special1 $bar_bg $foreground
+        inactive_workspace $bar_bg $bar_bg $foreground
     }
 }
 # }}}

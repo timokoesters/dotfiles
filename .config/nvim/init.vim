@@ -14,6 +14,8 @@ Plug 'lervag/vimtex' " Edit LaTeX with vim
 Plug 'morhetz/gruvbox' " Colorscheme
 Plug 'Yggdroot/indentLine' " Beautiful indent guides
 Plug 'mattn/emmet-vim' " Fast html development
+Plug 'xolox/vim-misc' " Misc plugin needed for easytags
+Plug 'xolox/vim-easytags' " CTags generation and highlighting
 
 call plug#end()
 " }}}
@@ -47,12 +49,7 @@ set termguicolors " Truecolor support
 
 set background=dark " Dark colors
 colorscheme gruvbox " Colorscheme
-
-set signcolumn=yes " Always show signcolumn
 let &colorcolumn=join(range(80, 999),',')
-
-"set cursorline
-"hi CursorLine guibg=#282828
 
 hi NonText guifg=#3c3836 guibg=#3c3836
 hi VertSplit guifg=#282828 guibg=#282828

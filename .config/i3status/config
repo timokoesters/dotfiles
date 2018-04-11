@@ -20,8 +20,8 @@ order += "tztime local"
 order += "battery all"
 
 volume master {
-        format = " Volume: %volume "
-        format_muted = " Volume: Muted (%volume) "
+        format = "Volume: %volume "
+        format_muted = "Volume: Muted (%volume) "
 }
 
 wireless _first_ {
