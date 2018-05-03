@@ -9,6 +9,9 @@ Plug 'honza/vim-snippets' " More Snippets
 Plug 'Shougo/neco-syntax' " Completion for many langauges
 Plug 'zchee/deoplete-jedi' " Python completion
 Plug 'zchee/deoplete-clang' " C++ completion
+Plug 'landaire/deoplete-d' " D completion
+Plug 'idanarye/vim-dutyl' " D Tools
+Plug 'scarface-one/vim-dlang-phobos-highlighter' " D Phobos Highlighter
 Plug 'w0rp/ale' " Lint engine
 Plug 'lervag/vimtex' " Edit LaTeX with vim
 Plug 'morhetz/gruvbox' " Colorscheme
@@ -81,6 +84,7 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 " Compile and execute code {{{
 autocmd filetype python nnoremap  <Space>   :wa <bar> vsplit +terminal\ python3\ %:p<CR>
 autocmd filetype c nnoremap       <Space>   :wa <bar> vsplit +terminal\ clang\ %:p\ -o\ %:p:r.out\ &&\ %:p:r.out<CR>
+autocmd filetype d nnoremap       <Space>   :wa <bar> vsplit +terminal\ rdmd\ %:p<CR>
 autocmd filetype cpp nnoremap     <Space>   :wa <bar> vsplit +terminal\ clang++\ -Wall\ -std=c++17\ %:p\ -o\ %:p:r.out\ &&\ %:p:r.out<CR>
 autocmd filetype cpp nnoremap     <C-Space> :wa <bar> vsplit +terminal\ make\ &&\ %:p:r.out<CR>
 autocmd filetype java nnoremap    <Space>   :wa <bar> vsplit +terminal\ javac\ %:p\ &&\ java\ -cp\ %:h\ %:t:r<CR>
