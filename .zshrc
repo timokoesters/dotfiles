@@ -42,7 +42,7 @@ bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal<Paste>
 
 alias ls='ls --color'
-alias ll='ls --color -lah'
+alias ll='ls --color -lAh'
 
 alias aa='sudo apt update && sudo apt upgrade'
 alias ai='sudo apt install'
@@ -62,6 +62,10 @@ alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
 
 alias tintin='tintin $HOME/.config/tintin/run.tin'
 
+export TERM='xterm-256color'
+
 source $HOME/.zsh/promptline
+eval $(ssh-agent)
+clear
 # Pywal colorscheme
 #(wal -r -t&)
