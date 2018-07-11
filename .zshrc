@@ -54,18 +54,16 @@ alias pa='sudo pacman -Syu'
 alias pi='sudo pacman -Sy'
 
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
-alias r='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
-alias android-studio='export _JAVA_AWT_WM_NONREPARENTING=1 && android-studio'
 
-alias sshpi='ssh koesters.ddns.net'
 alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
 
 alias tintin='tintin $HOME/.config/tintin/run.tin'
 
 export TERM='xterm-256color'
-
-source $HOME/.zsh/promptline
 eval $(ssh-agent)
+
+export PS1='
+%B%1~%b '
+
 clear
-# Pywal colorscheme
-#(wal -r -t&)
+fortune | cowsay | lolcat
