@@ -2,23 +2,22 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-sensible' " Default settings
-Plug 'Shougo/deoplete.nvim' " Asynchronus completion
 Plug 'Shougo/neosnippet.vim' " Snippet engine
 Plug 'Shougo/neosnippet-snippets' " Snippets
 Plug 'honza/vim-snippets' " More Snippets
 Plug 'Shougo/neco-syntax' " Completion for many langauges
+Plug 'Shougo/deoplete.nvim' " Asynchronus completion
 Plug 'zchee/deoplete-jedi' " Python completion
 Plug 'zchee/deoplete-clang' " C++ completion
-Plug 'landaire/deoplete-d' " D completion
+Plug 'sebastianmarkow/deoplete-rust' " Rust completion
 Plug 'idanarye/vim-dutyl' " D Tools
-Plug 'scarface-one/vim-dlang-phobos-highlighter' " D Phobos Highlighter
+Plug 'rust-lang/rust.vim' " Rust
 Plug 'w0rp/ale' " Lint engine
 Plug 'lervag/vimtex' " Edit LaTeX with vim
 Plug 'morhetz/gruvbox' " Colorscheme
 Plug 'Yggdroot/indentLine' " Beautiful indent guides
 Plug 'mattn/emmet-vim' " Fast html development
 Plug 'xolox/vim-misc' " Misc plugin needed for easytags
-Plug 'xolox/vim-easytags' " CTags generation and highlighting
 
 call plug#end()
 " }}}
@@ -85,6 +84,7 @@ let g:vimtex_view_general_options_latexmk = '--unique'
 autocmd filetype python nnoremap  <Space>   :wa <bar> vsplit +terminal\ python3\ %:p<CR>
 autocmd filetype c nnoremap       <Space>   :wa <bar> vsplit +terminal\ clang\ %:p\ -o\ %:p:r.out\ &&\ %:p:r.out<CR>
 autocmd filetype d nnoremap       <Space>   :wa <bar> vsplit +terminal\ rdmd\ %:p<CR>
+autocmd filetype rust nnoremap    <Space>   :wa <bar> vsplit +terminal\ cargo\ run\ %:p<CR>
 autocmd filetype cpp nnoremap     <Space>   :wa <bar> vsplit +terminal\ clang++\ -Wall\ -std=c++17\ %:p\ -o\ %:p:r.out\ &&\ %:p:r.out<CR>
 autocmd filetype cpp nnoremap     <C-Space> :wa <bar> vsplit +terminal\ make\ &&\ %:p:r.out<CR>
 autocmd filetype java nnoremap    <Space>   :wa <bar> vsplit +terminal\ javac\ %:p\ &&\ java\ -cp\ %:h\ %:t:r<CR>
