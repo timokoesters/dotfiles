@@ -41,9 +41,13 @@ bindkey '\e[4~'   end-of-line        # Linux console
 bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal<Paste>
 
+# More aliases
+alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
+alias st-big='st -f"Inconsolata:pixelsize=26:antialias=true:autohint=true";'
 alias ls='ls --color'
 alias ll='ls --color -lAh'
 
+# Update system
 alias aa='sudo apt update && sudo apt upgrade'
 alias ai='sudo apt install'
 alias as='apt-cache search'
@@ -52,18 +56,16 @@ alias ar='sudo apt remove'
 alias au='sudo apt update'
 alias pa='sudo pacman -Syu'
 alias pi='sudo pacman -Sy'
+alias ea='sudo emerge --sync && sudo emerge -uDUav --keep-going --with-bdeps=y @world'
 
+# Change programs
+alias rm='echo "Please use trash instead"; false'
 alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
-
-alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
-
 alias tintin='tintin $HOME/.config/tintin/run.tin'
+alias grep='grep --color=auto'
+alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 
-export TERM='xterm-256color'
 eval $(ssh-agent)
-
-export PS1='
-%B%1~%b '
 
 clear
 fortune | cowsay | lolcat
