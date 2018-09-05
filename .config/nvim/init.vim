@@ -10,22 +10,16 @@ Plug 'Shougo/deoplete.nvim' " Asynchronus completion
 Plug 'zchee/deoplete-jedi' " Python completion
 Plug 'zchee/deoplete-clang' " C++ completion
 Plug 'sebastianmarkow/deoplete-rust' " Rust completion
-Plug 'idanarye/vim-dutyl' " D Tools
 Plug 'rust-lang/rust.vim' " Rust
 Plug 'w0rp/ale' " Lint engine
-Plug 'lervag/vimtex' " Edit LaTeX with vim
 Plug 'morhetz/gruvbox' " Colorscheme
-Plug 'Yggdroot/indentLine' " Beautiful indent guides
-Plug 'mattn/emmet-vim' " Fast html development
-Plug 'xolox/vim-misc' " Misc plugin needed for easytags
 
 call plug#end()
 " }}}
 " Vim Settings {{{
 filetype indent on
 
-set undofile " Save undo history in ~/.vimundo
-set undodir=~/.vimundo/ " Specify undo directory
+set undofile " Save undo history
 
 set expandtab " Insert spaces on tab
 set tabstop=2 " Number of spaces for tab
@@ -41,6 +35,8 @@ set relativenumber " Make all line numbers except current
 set foldmethod=marker
 
 set nohlsearch
+
+set autochdir
 
 set completeopt-=preview " Don't open a window for completion previews
 set completeopt+=noinsert
@@ -71,14 +67,12 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-let g:ale_linters = {"cpp" : ['clang', 'clangtidy', 'cppcheck', 'cpplint']}
+let g:ale_linters = {"cpp" : ['clang', 'clangtidy', 'cppcheck', 'cpplint'], "tex" : []}
 let g:ale_cpp_clang_options = '-std=c++17 -Wall'
 let g:ale_cpp_clangtidy_options = '-std=c++17'
 
-let g:vimtex_view_general_viewer = 'qpdfview'
-let g:vimtex_view_general_options
-      \ = '--unique @pdf\#src:@tex:@line:@col'
-let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vim_markdown_folding_disabled = 1
+
 " }}}
 " Compile and execute code {{{
 autocmd filetype python nnoremap  <Space>   :wa <bar> vsplit +terminal\ python3\ %:p<CR>
@@ -92,6 +86,9 @@ autocmd filetype haskell nnoremap <Space>   :wa <bar> vsplit +terminal\ ghc\ %:p
 autocmd filetype js nnoremap      <Space>   :wa <bar> silent !qutebrowser :reload<CR>
 autocmd filetype html nnoremap    <Space>   :wa <bar> silent !qutebrowser :reload<CR>
 autocmd filetype css nnoremap     <Space>   :wa <bar> silent !qutebrowser :reload<CR>
+autocmd filetype tex nnoremap     <Space>   :wa <bar> silent if empty(glob("main.tex")) <bar> call jobstart('latexmk ' . expand('%:p') . ' -pdf -synctex=1 -shell-escape -outdir=out') <bar> else <bar> call jobstart('latexmk ' . expand('%:p:h') . '/main.tex -pdf -synctex=1 -shell-escape -outdir=out') <bar> endif<CR><CR>
+autocmd filetype tex nnoremap     <C-Space>   :wa <bar> silent if empty(glob("main.tex")) <bar> call jobstart('okular ' . expand('%:p:h').'/out/'.expand('%:t:r').'.pdf') <bar> else <bar> call jobstart('okular ' . expand('%:p:h').'/out/main.pdf') <bar> endif<CR><CR>
+"autocmd filetype tex nnoremap     <C-Space> :wa <bar> call jobstart('okular '.expand('%:p:h').'/out/'.expand('%:t:r').'.pdf')<CR>
 " }}}
 " Mappings {{{
 inoremap jk <Esc>
