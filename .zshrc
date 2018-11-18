@@ -42,8 +42,11 @@ bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal<Paste>
 
 # More aliases
+alias present='pdfpc'
+alias present_with_notes='pdfpc --notes right'
 alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
 alias st-big='st -f"Inconsolata:pixelsize=26:antialias=true:autohint=true";'
+alias offline='sudo unshare -n sudo -u timokoesters'
 alias ls='ls --color'
 alias ll='ls --color -lAh'
 
@@ -64,6 +67,7 @@ alias ranger='ranger --choosedir=$HOME/.rangerdir; cd `cat $HOME/.rangerdir`'
 alias tintin='tintin $HOME/.config/tintin/run.tin'
 alias grep='grep --color=auto'
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
+alias bc='bc -l'
 
 eval $(ssh-agent)
 

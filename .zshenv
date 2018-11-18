@@ -1,3 +1,7 @@
+export PATH="${PATH}:/opt/grim:$HOME/Downloads/Ndless/ndless-sdk/toolchain/install/bin:$HOME/Downloads/Ndless/ndless-sdk/bin"
+
+export XDG_CURRENT_DESKTOP=KDE
+
 # Default programs
 export EDITOR=/usr/bin/nvim
 
