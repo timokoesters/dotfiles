@@ -1,6 +1,10 @@
-export PATH="${PATH}:/opt/grim:$HOME/Downloads/Ndless/ndless-sdk/toolchain/install/bin:$HOME/Downloads/Ndless/ndless-sdk/bin"
+export PATH="${PATH}:/opt/grim:/opt/slurp:$HOME/Downloads/Ndless/ndless-sdk/toolchain/install/bin:$HOME/Downloads/Ndless/ndless-sdk/bin"
+
+#export RUST_SRC_PATH="/home/timokoesters/.local/share/nvim/rust-src/src"
 
 export XDG_CURRENT_DESKTOP=KDE
+export KDE_SESSION_VERSION="5"
+
 
 # Default programs
 export EDITOR=/usr/bin/nvim

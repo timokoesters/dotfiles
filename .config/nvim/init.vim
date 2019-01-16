@@ -3,23 +3,24 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'tpope/vim-sensible' " Default settings
-Plug 'Shougo/neosnippet.vim' " Snippet engine
-Plug 'Shougo/neosnippet-snippets' " Snippets
-Plug 'honza/vim-snippets' " More Snippets
-Plug 'Shougo/neco-syntax' " Completion for many langauges
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " Asynchronus completion
-Plug 'zchee/deoplete-jedi' " Python completion
-Plug 'zchee/deoplete-clang' " C++ completion
-Plug 'sebastianmarkow/deoplete-rust' " Rust completion
-Plug 'artur-shaik/vim-javacomplete2' " Java completion
-Plug 'rust-lang/rust.vim' " Rust
-Plug 'calviken/vim-gdscript3'
-Plug 'w0rp/ale' " Lint engine
-Plug 'morhetz/gruvbox' " Colorscheme
+Plug 'calviken/vim-gdscript3' " Gdscript
+
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'Shougo/neco-syntax'
+Plug 'ncm2/ncm2-syntax'
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
+
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
+Plug 'junegunn/fzf'
+
+Plug 'morhetz/gruvbox' " Colorscheme
 
 call plug#end()
 
@@ -27,6 +28,8 @@ call plug#end()
 " Vim Settings {{{
 
 filetype indent on
+
+set hidden
 
 set undofile " Save undo history
 
@@ -52,34 +55,35 @@ set completeopt+=noinsert
 set splitright
 
 " }}}
+" Plugin Settings {{{
+
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ }
+
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'Cargo.toml'))},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
+
+" }}}
 " Colorscheme {{{
 
 set termguicolors " Truecolor support
 
 set background=dark " Dark colors
 colorscheme gruvbox " Colorscheme
-
-" }}}
-" Plugin settings {{{
-
-let g:deoplete#sources#clang#libclang_path='/usr/lib/libclang.so'
-let g:deoplete#sources#clang#clang_header='/usr/lib/clang/'
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_delay = 50
-inoremap <expr> <C-n>  deoplete#mappings#manual_complete()
-
-let g:deoplete#enable_at_startup = 1
-
-let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-let g:ale_linters = {"cpp" : ['clang', 'clangtidy', 'cppcheck', 'cpplint'], "tex" : []}
-let g:ale_cpp_clang_options = '-std=c++17 -Wall'
-let g:ale_cpp_clangtidy_options = '-std=c++17'
-
-let g:vim_markdown_folding_disabled = 1
 
 " }}}
 " Compile and execute code {{{
@@ -108,10 +112,21 @@ inoremap {<CR>  {<CR>}<Esc>O
 nnoremap <Leader>s [s1z=
 tnoremap <Esc> <C-\><C-n>
 
-imap <silent><expr><CR> pumvisible() ? deoplete#mappings#close_popup()."\<Plug>(neosnippet_expand_or_jump)" : "\<CR>"
 
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
+let g:UltiSnipsExpandTrigger		= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger	= "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger	= "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 
 function! BgToggle()
     if (&background == "light")

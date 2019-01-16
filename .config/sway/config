@@ -37,10 +37,11 @@ set $up k
 set $right l
 
 # terminal
-set $term st
+set $term alacritty
 
 # Application launcher
-set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$foreground"
+#set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$foreground"
+set $menu "rofi -i -modi drun,run,window -show drun"
 
 # Screenshot
 set $screenshot /opt/grim/grim $HOME/screenshot.png
@@ -96,9 +97,13 @@ input 1267:12341:ELAN1301:00_04F3:3035_Touchpad {
     xkb_options caps:escape
 }
 
-exec swayidle \
-  timeout 100 'swaymsg "output * dpms off"' \
-      resume 'swaymsg "output * dpms on"'
+input 1356:1476:Sony_Computer_Entertainment_Wireless_Controller_Touchpad {
+    events disabled
+}
+
+#exec swayidle \
+#  timeout 100 'swaymsg "output * dpms off"' \
+#      resume 'swaymsg "output * dpms on"'
 
 # }}}
 # Key bindings {{{
@@ -244,9 +249,11 @@ bar {
           $(cat /sys/class/power_supply/BAT0/energy_now) / \
           $(cat /sys/class/power_supply/BAT0/energy_full)\"\
         | bc) \
-      % \| $(date '+%A %d.%m.%y | Week %V | Time %T |')"; sleep 1; done;
+      % \| $(date '+%A %d.%m.%y | Time %T | ')\
+      "; sleep 1; done;
     position top
     font inconsolata 9
+      #$(if [ $(echo $(date '+%V') % 2 | bc) != 0 ]; then echo \"SPORT | \"; fi) \
 
     colors {
         statusline $foreground
