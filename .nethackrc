@@ -1,0 +1,171 @@
+name=player
+
+OPTIONS=fruit:cookie
+OPTIONS=autodig
+OPTIONS=autopickup
+OPTIONS=pickup_types:$"=/!?+
+OPTIONS=time
+OPTIONS=showexp
+OPTIONS=showscore
+OPTIONS=!implicit_uncursed
+OPTIONS=msghistory:30
+OPTIONS=msg_window:reverse
+OPTIONS=standout
+OPTIONS=hitpointbar
+OPTIONS=pickup_burden:unencumbered
+OPTIONS=use_darkgray
+OPTIONS=lit_corridor
+OPTIONS=altmeta
+OPTIONS=hilite_pet
+OPTIONS=hilite_pile
+OPTIONS=disclose:+iaco-vg
+
+# Menu colors
+OPTIONS=color
+OPTIONS=menucolors
+
+MENUCOLOR=" blessed"=cyan
+MENUCOLOR=" holy "=green
+MENUCOLOR=" cursed"=red
+MENUCOLOR=" unholy "=red
+MENUCOLOR=" cursed .* (being worn)"=orange&underline
+MENUCOLOR=" \+[1-9]"=lightcyan
+MENUCOLOR=" \-[1-9]"=orange
+
+# Statusbar colors
+OPTIONS=statushilites:10
+OPTIONS=hilite_status:alignment/lawful/green&bold
+OPTIONS=hilite_status:experience-level/changed/white/cyan
+OPTIONS=hilite_status:characteristics/<5/red
+OPTIONS=hilite_status:characteristics/>6/orange
+OPTIONS=hilite_status:characteristics/>8/brown
+OPTIONS=hilite_status:characteristics/>11/yellow
+OPTIONS=hilite_status:characteristics/>13/green
+OPTIONS=hilite_status:characteristics/>16/cyan
+OPTIONS=hilite_status:characteristics/>18/lightblue
+
+OPTIONS=hilite_status:cap/burdened/yellow/stressed/orange/strained/red&bold/overtaxed/red&inverse/overloaded/red&inverse&blink
+OPTIONS=hilite_status:hunger/satiated/yellow/hungry/orange/weak/red&bold/fainting/red&inverse/fainted/red&inverse&blink
+OPTIONS=hilite_status:condition/hallu/yellow
+OPTIONS=hilite_status:condition/conf/orange
+OPTIONS=hilite_status:condition/stun/red&bold
+OPTIONS=hilite_status:condition/termill/red&inverse
+OPTIONS=hilite_status:condition/foodpois/red&inverse
+OPTIONS=hilite_status:condition/slime/red&inverse
+OPTIONS=hilite_status: gold/up/yellow/down/brown
+
+OPTIONS=hilite_status:hitpoints/100%/grey&normal
+OPTIONS=hilite_status:hitpoints/<100%/green&normal
+OPTIONS=hilite_status:hitpoints/<66%/yellow&normal
+OPTIONS=hilite_status:hitpoints/<50%/orange&normal
+OPTIONS=hilite_status:hitpoints/<33%/red&bold
+OPTIONS=hilite_status:hitpoints/<15%/red&inverse
+
+OPTIONS=hilite_status:power/100%/grey&normal
+OPTIONS=hilite_status:power/<100%/green&normal
+OPTIONS=hilite_status:power/<66%/yellow&normal
+OPTIONS=hilite_status:power/<50%/orange&normal
+OPTIONS=hilite_status:power/<33%/red&bold
+
+# Map graphics
+SYMBOLS=S_boulder:0
+
+SYMBOLS=S_vwall:\xf8
+SYMBOLS=S_hwall:\xf1
+SYMBOLS=S_tlcorn:\xec
+SYMBOLS=S_trcorn:\xeb
+SYMBOLS=S_blcorn:\xed
+SYMBOLS=S_brcorn:\xea
+SYMBOLS=S_crwall:\xee
+SYMBOLS=S_tuwall:\xf6
+SYMBOLS=S_tdwall:\xf7
+SYMBOLS=S_tlwall:\xf5
+SYMBOLS=S_trwall:\xf4
+SYMBOLS=S_ndoor:\xfe
+SYMBOLS=S_vodoor:\xe1
+SYMBOLS=S_hodoor:\xe1
+SYMBOLS=S_bars:\xfb
+SYMBOLS=S_tree:\xe7
+SYMBOLS=S_room:\xfe
+SYMBOLS=S_upladder:\xf9
+SYMBOLS=S_dnladder:\xfa
+SYMBOLS=S_pool:\xe0
+SYMBOLS=S_ice:\xfe
+SYMBOLS=S_lava:\xe0
+SYMBOLS=S_vodbridge:\xfe
+SYMBOLS=S_hodbridge:\xfe
+SYMBOLS=S_water:\xe0
+SYMBOLS=S_vbeam:\xf8
+SYMBOLS=S_hbeam:\xf1
+SYMBOLS=S_sw_tc:\xef
+SYMBOLS=S_sw_ml:\xf8
+SYMBOLS=S_sw_mr:\xf8
+SYMBOLS=S_sw_bc:\xf3
+SYMBOLS=S_explode2:\xef
+SYMBOLS=S_explode4:\xf8
+SYMBOLS=S_explode6:\xf8
+SYMBOLS=S_explode8:\xf3
+
+# Emergencies
+MSGTYPE=stop "The (couatl.*eel|kraken) swings itself around you!"
+MSGTYPE=stop "The python grabs you!"
+MSGTYPE=stop "You don't feel very well"
+MSGTYPE=stop "You are turning a little green"
+MSGTYPE=stop "Your limbs are getting oozy"
+MSGTYPE=stop "Your skin begins to peel away"
+MSGTYPE=stop "You are turning into a green slime"
+MSGTYPE=stop "You are slowing down"
+MSGTYPE=stop "Your limbs are stiffening"
+MSGTYPE=stop "It constricts your throat!"
+MSGTYPE=stop "You find it hard to breathe"
+MSGTYPE=stop "You're gasping for air"
+MSGTYPE=stop "Your blood is having trouble reaching your brain"
+MSGTYPE=stop "You can no longer breathe"
+MSGTYPE=stop "You're turning blue"
+MSGTYPE=stop "Your consciousness is fading"
+MSGTYPE=stop "You feel deathly sick"
+MSGTYPE=stop "You feel much worse"
+MSGTYPE=stop "You feel even worse"
+
+# Vibrating square
+MSGTYPE=stop "You feel a strange vibration beneath "
+MSGTYPE=stop "You feel a strange vibration under your "
+
+# Enhance
+MSGTYPE=stop "You feel more confident "
+
+# Status effects
+MSGTYPE=stop "You feel hungry"
+MSGTYPE=stop "You are beginning to feel hungry"
+MSGTYPE=stop "You are getting the munchies"
+MSGTYPE=stop "You feel weak now"
+MSGTYPE=stop "You still have the munchies"
+MSGTYPE=stop "You feel weak"
+MSGTYPE=stop "You are beginning to feel weak"
+MSGTYPE=stop "The munchies are interfering with your motor capabilities"
+MSGTYPE=stop " needs food, badly!"
+MSGTYPE=stop "You only feel hungry now"
+MSGTYPE=stop "You now have a lesser case of the munchies"
+MSGTYPE=stop "You faint from lack of food"
+MSGTYPE=stop "You regain consciousness"
+MSGTYPE=stop "You die from starvation"
+MSGTYPE=stop "You die from hunger and exhaustion"
+MSGTYPE=stop "You feel deathly sick"
+MSGTYPE=stop "You feel even worse"
+MSGTYPE=stop "You feel much worse"
+MSGTYPE=stop "You die from your illness"
+
+# Inventory cursing
+MSGTYPE=stop "You feel a malignant aura surround the magic-absorbing blade"
+MSGTYPE=stop "You feel a malignant aura surround you"
+
+# Near-death
+MSGTYPE=stop "You hear the howling of the CwnAnnwn..."
+MSGTYPE=stop ", your life force is running out."
+MSGTYPE=stop ", all your powers will be lost..."
+MSGTYPE=stop "You hear the wailing of the Banshee..."
+MSGTYPE=stop " is about to die."
+
+# Pet
+MSGTYPE=hide "You swap places with your .*"
+

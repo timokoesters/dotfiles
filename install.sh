@@ -13,3 +13,4 @@ ln -sf $HOME/dotfiles/.zsh/promptline $HOME/.zsh/promptline
 ln -sf $HOME/dotfiles/.zshenv $HOME/.zshenv
 ln -sf $HOME/dotfiles/.zprofile $HOME/.zprofile
 ln -sf $HOME/dotfiles/.tmux/tmuxline $HOME/.tmux/tmuxline
+ln -sf $HOME/dotfiles/.nethackrc $HOME/.nethackrc
