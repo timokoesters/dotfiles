@@ -1,4 +1,5 @@
-name=player
+# Ask for name
+#name=player
 
 OPTIONS=fruit:cookie
 OPTIONS=autodig
