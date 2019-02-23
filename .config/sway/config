@@ -250,10 +250,10 @@ bar {
           $(cat /sys/class/power_supply/BAT0/energy_full)\"\
         | bc) \
       % \| $(date '+%A %d.%m.%y | Time %T | ')\
+      $(if [ $(echo $(date '+%V') % 2 | bc) != 0 ]; then echo \"SPORT | \"; fi) \
       "; sleep 1; done;
     position top
     font inconsolata 9
-      #$(if [ $(echo $(date '+%V') % 2 | bc) != 0 ]; then echo \"SPORT | \"; fi) \
 
     colors {
         statusline $foreground

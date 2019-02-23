@@ -34,9 +34,9 @@ set hidden
 set undofile " Save undo history
 
 set expandtab " Insert spaces on tab
-set tabstop=2 " Number of spaces for tab
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4 " Number of spaces for tab
+set shiftwidth=4
+set softtabstop=4
 
 set ignorecase
 set smartcase
@@ -82,6 +82,7 @@ endif
 
 set termguicolors " Truecolor support
 
+let g:gruvbox_contrast_dark = "hard"
 set background=dark " Dark colors
 colorscheme gruvbox " Colorscheme
 

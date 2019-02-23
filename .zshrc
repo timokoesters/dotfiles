@@ -3,6 +3,15 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
+source ~/.zplug/init.zsh
+
+zplug "zsh-users/zsh-syntax-highlighting"
+
+zplug load
+
+# Rustup autocomplete
+fpath+=~/.zfunc
+
 # Use modern completion system
 autoload -Uz compinit promptinit
 compinit
@@ -40,12 +49,13 @@ bindkey '\e[3~'   delete-char        # Linux console, xterm, gnome-terminal
 bindkey '\e[4~'   end-of-line        # Linux console
 bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal<Paste>
+bindkey -e
 
 # More aliases
 alias present='pdfpc'
 alias present_with_notes='pdfpc --notes right'
 alias sshfspi='sshfs koesters.ddns.net /media/playlucky/koesters.ddns.net/'
-alias st-big='st -f"Inconsolata:pixelsize=26:antialias=true:autohint=true";'
+alias stbig='st -f"Inconsolata:pixelsize=26:antialias=true:autohint=true";'
 alias offline='sudo unshare -n sudo -u timokoesters'
 alias ls='ls --color'
 alias ll='ls --color -lAh'

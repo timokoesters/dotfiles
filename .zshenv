@@ -1,15 +1,16 @@
 export PATH="${PATH}:/opt/grim:/opt/slurp:$HOME/Downloads/Ndless/ndless-sdk/toolchain/install/bin:$HOME/Downloads/Ndless/ndless-sdk/bin"
 
-#export RUST_SRC_PATH="/home/timokoesters/.local/share/nvim/rust-src/src"
+# Alacritty
+export WINIT_HIDPI_FACTOR=1
 
+# Sway
 export XDG_CURRENT_DESKTOP=KDE
 export KDE_SESSION_VERSION="5"
 
-
-# Default programs
+# Default editor
 export EDITOR=/usr/bin/nvim
 
-# Keyboard
+# Keyboard options (sway)
 export XKB_DEFAULT_OPTIONS=caps:escape
 
 # XDG dirs
@@ -28,6 +29,7 @@ export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 export TERM='xterm-256color'
-export PS1='
-%B%1~%b '
 
+# Prompt
+export PS1='
+[%F{green} %n %F{blue}%2~ %f] '
