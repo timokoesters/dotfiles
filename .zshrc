@@ -59,6 +59,8 @@ alias stbig='st -f"Inconsolata:pixelsize=26:antialias=true:autohint=true";'
 alias offline='sudo unshare -n sudo -u timokoesters'
 alias ls='ls --color'
 alias ll='ls --color -lAh'
+alias echome='pactl load-module module-loopback latency_msec=1'
+alias newsongs='youtube-dl -xwci'
 
 # Update system
 alias aa='sudo apt update && sudo apt upgrade'
