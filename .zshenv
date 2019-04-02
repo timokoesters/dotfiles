@@ -1,4 +1,7 @@
 export PATH="${PATH}:/opt/grim:/opt/slurp:$HOME/Downloads/Ndless/ndless-sdk/toolchain/install/bin:$HOME/Downloads/Ndless/ndless-sdk/bin"
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig
 
 # Alacritty
 export WINIT_HIDPI_FACTOR=1
