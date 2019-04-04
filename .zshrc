@@ -39,8 +39,9 @@ setopt correct
 setopt sharehistory
 setopt extendedhistory
 
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+bindkey -e
+bindkey $terminfo[kLFT5] backward-word
+bindkey $terminfo[kRIT5] forward-word
 bindkey '\e[1~'   beginning-of-line  # Linux console
 bindkey '\e[H'    beginning-of-line  # xterm
 bindkey '\eOH'    beginning-of-line  # gnome-terminal
@@ -49,7 +50,6 @@ bindkey '\e[3~'   delete-char        # Linux console, xterm, gnome-terminal
 bindkey '\e[4~'   end-of-line        # Linux console
 bindkey '\e[F'    end-of-line        # xterm
 bindkey '\eOF'    end-of-line        # gnome-terminal<Paste>
-bindkey -e
 
 # More aliases
 alias present='pdfpc'
@@ -81,7 +81,4 @@ alias grep='grep --color=auto'
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 alias bc='bc -l'
 
-eval $(ssh-agent)
-
 clear
-fortune | cowsay | lolcat
