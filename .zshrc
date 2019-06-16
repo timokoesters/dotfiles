@@ -81,4 +81,6 @@ alias grep='grep --color=auto'
 alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
 alias bc='bc -l'
 
+gpg-connect-agent /bye
+
 clear
