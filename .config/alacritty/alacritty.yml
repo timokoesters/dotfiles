@@ -80,18 +80,21 @@ tabspaces: 8
 font:
   # Normal (roman) font face
   normal:
+    family: Noto Color Emoji
     family: Inconsolata
     # The `style` can be specified to pick a specific face.
     #style: Regular
 
   # Bold font face
   bold:
+    family: Noto Color Emoji
     family: Inconsolata
     # The `style` can be specified to pick a specific face.
     #style: Bold
 
   # Italic font face
   italic:
+    family: Noto Color Emoji
     family: Inconsolata
     # The `style` can be specified to pick a specific face.
     #style: Italic
@@ -115,48 +118,48 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-# Base16 Default Dark 256 - alacritty color config
+# Base16 Chalk 256 - alacritty color config
 # Chris Kempson (http://chriskempson.com)
 colors:
   # Default colors
   primary:
-    background: '0x181818'
-    foreground: '0xd8d8d8'
+    background: '0x151515'
+    foreground: '0xd0d0d0'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x181818'
-    cursor: '0xd8d8d8'
+    text: '0x151515'
+    cursor: '0xd0d0d0'
 
   # Normal colors
   normal:
-    black:   '0x181818'
-    red:     '0xab4642'
-    green:   '0xa1b56c'
-    yellow:  '0xf7ca88'
-    blue:    '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan:    '0x86c1b9'
-    white:   '0xd8d8d8'
+    black:   '0x151515'
+    red:     '0xfb9fb1'
+    green:   '0xacc267'
+    yellow:  '0xddb26f'
+    blue:    '0x6fc2ef'
+    magenta: '0xe1a3ee'
+    cyan:    '0x12cfc0'
+    white:   '0xd0d0d0'
 
   # Bright colors
   bright:
-    black:   '0x585858'
-    red:     '0xab4642'
-    green:   '0xa1b56c'
-    yellow:  '0xf7ca88'
-    blue:    '0x7cafc2'
-    magenta: '0xba8baf'
-    cyan:    '0x86c1b9'
-    white:   '0xf8f8f8'
+    black:   '0x505050'
+    red:     '0xfb9fb1'
+    green:   '0xacc267'
+    yellow:  '0xddb26f'
+    blue:    '0x6fc2ef'
+    magenta: '0xe1a3ee'
+    cyan:    '0x12cfc0'
+    white:   '0xf5f5f5'
 
   indexed_colors:
-    - { index: 16, color: '0xdc9656' }
-    - { index: 17, color: '0xa16946' }
-    - { index: 18, color: '0x282828' }
-    - { index: 19, color: '0x383838' }
-    - { index: 20, color: '0xb8b8b8' }
-    - { index: 21, color: '0xe8e8e8' }
+    - { index: 16, color: '0xeda987' }
+    - { index: 17, color: '0xdeaf8f' }
+    - { index: 18, color: '0x202020' }
+    - { index: 19, color: '0x303030' }
+    - { index: 20, color: '0xb0b0b0' }
+    - { index: 21, color: '0xe0e0e0' }
 
 # Visual Bell
 #

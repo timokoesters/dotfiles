@@ -7,6 +7,7 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 set autoindent
+set textwidth=80
 set number
 set splitright
 set wildmode=longest,list
@@ -16,6 +17,7 @@ set nohlsearch
 set smartcase
 set termguicolors
 set clipboard+=unnamedplus
+set scrolloff=5
 filetype plugin on
 
 " Use Q to execute default register
@@ -31,6 +33,8 @@ Plug 'reedes/vim-pencil' " Nice tweeks for writing
 Plug 'reedes/vim-wordy' " Bad word usage
 Plug 'tpope/vim-fugitive' " Git commands
 Plug 'airblade/vim-gitgutter' " Git diff indications
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown preview
+Plug 'godlygeek/tabular' " Alignment
 call plug#end()
 
 " Git
@@ -38,13 +42,13 @@ set updatetime=100
 
 " Rust
 let g:rustfmt_autosave = 1
-autocmd filetype rust nnoremap <Space> :wa <bar> 60vsplit +terminal\ cargo\ check<CR>
+autocmd filetype rust nnoremap <Space> :wa <bar> 80vsplit +terminal\ cargo\ check<CR>
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
 " Colorscheme
-colorscheme base16-default-dark
+colorscheme base16-chalk
 
 " Writing
 let g:pencil#wrapModeDefault = 'soft'
@@ -57,3 +61,17 @@ augroup pencil
 augroup END
 
 noremap <silent> <F8> :<C-u>NextWordy<CR>
+
+" Tabular
+" Automatically call tabularize in markdown tables
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction

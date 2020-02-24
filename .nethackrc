@@ -21,6 +21,7 @@ OPTIONS=hilite_pet
 OPTIONS=hilite_pile
 OPTIONS=disclose:+iaco-vg
 OPTIONS=number_pad:0
+OPTIONS=!cmdassist
 
 # Menu colors
 OPTIONS=color

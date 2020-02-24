@@ -41,38 +41,42 @@ set $term alacritty
 
 # Application launcher
 #set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$foreground"
-set $menu "rofi -i -modi drun,run,window -show drun"
+set $menu "wofi"
 
-# Screenshot
-set $screenshot /opt/grim/grim $HOME/screenshot.png
+# Screenshot / Screencast
+set $screenshot grim $HOME/screenshot.png && firefox $HOME/screenshot.png
+set $screenshotselect grim -g "$(slurp)" $HOME/screenshot.png && firefox $HOME/screenshot.png
+set $screencast $HOME/Development/repos/wf-recorder/build/wf-recorder -f $HOME/screencast.mp4 && firefox $HOME/screencast.mp4
+set $screencastselect $HOME/Development/repos/wf-recorder/build/wf-recorder -g "$(slurp)" -f $HOME/screencast.mp4 && firefox $HOME/screencast.mp4
+set $screencastend pkill --signal SIGINT wf-recorder
 
-# Lock screen
-set $lock $screenshot && mogrify -filter Gaussian \
--resize 20% -define filter:sigma=1.5 \
--resize 500% $HOME/Documents/screenshot.png && \
-swaylock \
--i $HOME/Documents/screenshot.png \
---textcolor 00000000 \
---font inconsolata \
---bshlcolor fb4934 \
---keyhlcolor fe8019 \
---insidecolor 1d2021 \
---ringcolor 1d2021 \
---insidevercolor 1d2021 \
---ringvercolor fe8019 \
---insidewrongcolor 1d2021 \
---ringwrongcolor fb4934 \
---separatorcolor 00000000 \
---indicator-radius 200 \
---indicator-thickness 25 \
--s
+## Lock screen
+#set $lock $screenshot && mogrify -filter Gaussian \
+#-resize 20% -define filter:sigma=1.5 \
+#-resize 500% $HOME/Documents/screenshot.png && \
+#swaylock \
+#-i $HOME/Documents/screenshot.png \
+#--textcolor 00000000 \
+#--font inconsolata \
+#--bshlcolor fb4934 \
+#--keyhlcolor fe8019 \
+#--insidecolor 1d2021 \
+#--ringcolor 1d2021 \
+#--insidevercolor 1d2021 \
+#--ringvercolor fe8019 \
+#--insidewrongcolor 1d2021 \
+#--ringwrongcolor fb4934 \
+#--separatorcolor 00000000 \
+#--indicator-radius 200 \
+#--indicator-thickness 25 \
+#-s
 # }}}
 # Settings {{{
 # Wallpaper
 output * bg $wallpaper fill
 
 # Border around windows
-default_border pixel 5
+default_border pixel 2
 
 # Drag windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
@@ -87,15 +91,20 @@ client.focused_inactive $transparent $background $foreground $color7 $background
 gaps inner 10
 gaps outer 30
 
+# Input
+input 1:1:AT_Translated_Set_2_keyboard {
+    xkb_options caps:escape
+}
+
 # Laptop touchpad
 input 1267:12341:ELAN1301:00_04F3:3035_Touchpad {
     middle_emulation enabled
     scroll_method two_finger
     tap enabled
     dwt disabled
-
-    xkb_options caps:escape
 }
+
+seat seat0 hide_cursor 10000
 
 input 1356:1476:Sony_Computer_Entertainment_Wireless_Controller_Touchpad {
     events disabled
@@ -125,20 +134,20 @@ bindsym $mod+d exec $menu
 bindsym $mod+semicolon exec $menu
 
 # Monitor brightness
-bindsym Shift+XF86MonBrightnessDown exec xbacklight -steps 30 -5
-bindsym Shift+XF86MonBrightnessUp exec xbacklight -steps 30 +5
-bindsym XF86MonBrightnessDown exec xbacklight -steps 30 -5
-bindsym XF86MonBrightnessUp exec xbacklight -steps 30 +5
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+#bindsym Shift+XF86MonBrightnessDown exec alacritty
+#bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +50%
 
 # Keyboard brightness
-bindsym XF86KbdBrightnessDown exec xbacklight -steps 30 -c asus::kbd_backlight 0
-bindsym XF86KbdBrightnessUp exec xbacklight -steps 30 -c asus::kbd_backlight 100
+#bindsym XF86KbdBrightnessDown exec xbacklight -steps 30 -c asus::kbd_backlight 0
+#bindsym XF86KbdBrightnessUp exec xbacklight -steps 30 -c asus::kbd_backlight 100
 
 # Volume
-bindsym XF86AudioRaiseVolume exec amixer -q sset PCM 5%+
-bindsym XF86AudioLowerVolume exec amixer -q sset PCM 5%-
-bindsym Shift+XF86AudioRaiseVolume exec amixer -q sset PCM 1%+
-bindsym Shift+XF86AudioLowerVolume exec amixer -q sset PCM 1%-
+bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+
+bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%-
+bindsym Shift+XF86AudioRaiseVolume exec amixer -q sset Master 1%+
+bindsym Shift+XF86AudioLowerVolume exec amixer -q sset Master 1%-
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 
 # Lock screen
@@ -148,15 +157,19 @@ bindsym pause exec $lock
 bindsym $mod+g       gaps inner all set 10; gaps outer all set 30
 bindsym $mod+Shift+g gaps inner all set 0;  gaps outer all set 0
 
-# Screenshot
+# Screenshot / Screencast
 bindsym Print exec $screenshot
+bindsym Shift+Print exec $screenshotselect
+bindsym Control+Print exec $screencast
+bindsym Control+Shift+Print exec $screencastselect
+bindsym Alt+Print exec $screencastend
 
 # Power Button
-bindsym XF86PowerOff exec sudo pm-suspend
+#bindsym XF86PowerOff exec sudo pm-suspend
 #bindsym Control+XF86PowerOff exec systemctl poweroff
 
 # Disable mouse
-bindsym $mod+q input 1267:12341:ELAN1301:00_04F3:3035_Touchpad events disable
+bindsym $mod+q input 1267:12341:ELAN1301:00_04F3:3035_Touchpad events toggle
 
 # Reload configuration
 bindsym $mod+Shift+c reload
@@ -221,6 +234,9 @@ bindsym $mod+Shift+space floating toggle
 # Toggle focus between tiled and floating windows
 bindsym $mod+space focus mode_toggle
 
+# Emoji picker
+bindsym $mod+e exec $HOME/bin/rofi-emoji.sh
+
 # Emulate middle mouse button
 #bindsym Alt+button1 exec termite
 
@@ -244,16 +260,17 @@ bindsym $mod+r mode "resize"
 bar {
     status_command while true; \
     do \
-        echo "\| Charge $(echo \"\
+        echo "\| Battery $(echo \"\
           100 * \
           $(cat /sys/class/power_supply/BAT0/energy_now) / \
           $(cat /sys/class/power_supply/BAT0/energy_full)\"\
         | bc) \
-      % \| $(date '+%A %d.%m.%y | Time %T | ')\
-      $(if [ $(echo $(date '+%V') % 2 | bc) != 0 ]; then echo \"SPORT | \"; fi) \
+      % \| $(echo \"scale=3; $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq) / 1000000.0\" | bc) GHz \|\
+      $(date '+%A %Y-%m-%d %T | ')\
+        $(if [ $(echo $(date '+%V') % 2 | bc) != 0 ]; then echo \"SPORT | \"; fi) \
       "; sleep 1; done;
-    position top
-    font inconsolata 9
+    position bottom
+    font inconsolata 12
 
     colors {
         statusline $foreground
@@ -266,15 +283,12 @@ bar {
 
 # }}}
 # Startup applications {{{
-# Start kdeconnect on each reload
-# (When executed while running nothing happens)
-#exec_always /usr/lib/kdeconnectd
+# Start kdeconnect
+exec /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+exec /usr/bin/kdeconnect-indicator
 
-# Start mounting daemon
-#exec /usr/bin/udiskie
-
-# Start notification daemon
-#exec /usr/bin/dunst
+exec /usr/bin/nextcloud
+exec /usr/local/bin/mako --default-timeout 5000
 
 # Pywal colorscheme on reload
 #exec wal -R
