@@ -9,6 +9,7 @@ ln -sf $HOME/dotfiles/.config/ranger/scope.sh $HOME/.config/ranger/scope.sh
 ln -sf $HOME/dotfiles/.config/termite/config $HOME/.config/termite/config
 ln -sf $HOME/dotfiles/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 ln -sf $HOME/dotfiles/.local/share/konsole/gruvbox.colorscheme $HOME/.local/share/konsole/gruvbox.colorscheme
+ln -sf $HOME/dotfiles/.bashrc $HOME/.bashrc
 ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc
 ln -sf $HOME/dotfiles/.zsh/promptline $HOME/.zsh/promptline
 ln -sf $HOME/dotfiles/.zshenv $HOME/.zshenv
