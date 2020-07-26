@@ -15,6 +15,9 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# ** is recursive
+shopt -s globstar
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
 HISTFILESIZE=2000
@@ -115,6 +118,8 @@ fi
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 #gpgconf --launch gpg-agent
 
+alias ledger='nvim $HOME/Documents/hledger.journal'
+alias hledger='hledger -f $HOME/Documents/hledger.journal'
 alias echome='pactl load-module module-loopback latency_msec=1'
 alias echooff='pactl unload-module module-loopback'
 alias dream='nvim /home/timo/Misc/Dreams/$(date +%Y/%m/%d).txt'

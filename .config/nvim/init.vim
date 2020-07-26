@@ -37,6 +37,7 @@ Plug 'tpope/vim-fugitive' " Git commands
 Plug 'airblade/vim-gitgutter' " Git diff indications
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown preview
 Plug 'godlygeek/tabular' " Alignment
+Plug 'ledger/vim-ledger' " Finance
 call plug#end()
 
 " Automatically create missing directories when saving a new file

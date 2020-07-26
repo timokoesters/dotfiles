@@ -267,7 +267,6 @@ bar {
         | bc) \
       % \| $(echo \"scale=3; $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq) / 1000000.0\" | bc) GHz \|\
       $(date '+%A %Y-%m-%d %T | ')\
-        $(if [ $(echo $(date '+%V') % 2 | bc) != 0 ]; then echo \"SPORT | \"; fi) \
       "; sleep 1; done;
     position bottom
     font inconsolata 12
