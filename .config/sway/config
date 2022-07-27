@@ -104,15 +104,21 @@ input 1267:12341:ELAN1301:00_04F3:3035_Touchpad {
     dwt disabled
 }
 
+# Gaming mouse
+input 1133:49970:Logitech_Gaming_Mouse_G502 {
+    accel_profile "flat"
+    pointer_accel 0.1
+}
+
 seat seat0 hide_cursor 10000
 
 input 1356:1476:Sony_Computer_Entertainment_Wireless_Controller_Touchpad {
     events disabled
 }
 
-#exec swayidle \
-#  timeout 100 'swaymsg "output * dpms off"' \
-#      resume 'swaymsg "output * dpms on"'
+exec swayidle \
+  timeout 100 'swaymsg "output eDP-1 dpms off"' \
+      resume 'swaymsg "output eDP-1 dpms on"'
 
 # }}}
 # Key bindings {{{
@@ -282,6 +288,10 @@ bar {
 
 # }}}
 # Startup applications {{{
+
+exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment WAYLAND_DISPLAY
+
 # Start kdeconnect
 exec /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
 exec /usr/bin/kdeconnect-indicator

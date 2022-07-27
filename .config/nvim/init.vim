@@ -29,6 +29,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'rust-lang/rust.vim' " Rust commands
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " Completion
 Plug 'ctrlpvim/ctrlp.vim' " Quick file search
+Plug 'udalov/kotlin-vim' " Kotlin syntax highlighting
 Plug 'chriskempson/base16-vim' " Colorscheme
 Plug 'junegunn/goyo.vim' " Distraction free writing
 Plug 'reedes/vim-pencil' " Nice tweeks for writing
@@ -47,7 +48,7 @@ augroup Mkdir
 augroup END
 
 " Rust
-let g:rustfmt_autosave = 1
+"let g:rustfmt_autosave = 1
 
 " Markdown
 let vim_markdown_preview_hotkey='<C-m>'
@@ -138,6 +139,9 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
+
+" LaTeX
+autocmd BufWritePost *.tex silent !pdflatex -shell-escape --output-directory out <afile>
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph

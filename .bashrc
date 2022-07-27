@@ -120,6 +120,10 @@ export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 alias ledger='nvim $HOME/Documents/hledger.journal'
 alias hledger='hledger -f $HOME/Documents/hledger.journal'
+alias hledger-web='hledger-web -f $HOME/Documents/hledger.journal'
 alias echome='pactl load-module module-loopback latency_msec=1'
 alias echooff='pactl unload-module module-loopback'
-alias dream='nvim /home/timo/Misc/Dreams/$(date +%Y/%m/%d).txt'
+alias dream='nvim /home/timo/Documents/Dreams/$(date +%Y/%m/%d).txt'
+alias diary='nvim /home/timo/Documents/Diary/$(date +%Y-%m-%d).txt'
+alias todo='nvim /home/timo/todo.md'
+alias scan='gocr $HOME/screenshot.png'
