@@ -18,4 +18,4 @@ ln -sf $HOME/dotfiles/.tmux/tmuxline $HOME/.tmux/tmuxline
 ln -sf $HOME/dotfiles/.nethackrc $HOME/.nethackrc
 
 # Create ledger directory sources
-/bin/bash -c "mkdir -p $HOME/Documents/$HOME/Documents/{Dream,Diary}/"
+/bin/bash -c "pushd $HOME; mkdir -p ./Documents/{Dream,Diary}/; popd"
