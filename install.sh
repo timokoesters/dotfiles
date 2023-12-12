@@ -8,6 +8,8 @@ ln -sf $HOME/dotfiles/.config/ranger/rc.conf $HOME/.config/ranger/rc.conf
 ln -sf $HOME/dotfiles/.config/ranger/scope.sh $HOME/.config/ranger/scope.sh
 ln -sf $HOME/dotfiles/.config/termite/config $HOME/.config/termite/config
 ln -sf $HOME/dotfiles/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
+ln -sf $HOME/dotfiles/.config/helix/config.toml $HOME/.config/helix/config.toml
+ln -sf $HOME/dotfiles/.config/helix/languages.toml $HOME/.config/helix/languages.toml
 ln -sf $HOME/dotfiles/.local/share/konsole/gruvbox.colorscheme $HOME/.local/share/konsole/gruvbox.colorscheme
 ln -sf $HOME/dotfiles/.bashrc $HOME/.bashrc
 ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc

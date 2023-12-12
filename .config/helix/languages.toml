@@ -1,0 +1,31 @@
+[language-server.ltex]
+command = "/usr/bin/ltex-ls"
+
+[[language]]
+name = "markdown"
+indent = { tab-width = 4, unit = "    " }
+
+#[[language]]
+#name = "rust"
+#[language.language-servers]
+#command = "rustup"
+#args = ["run", "stable", "rust-analyzer"]
+
+#[language.config]
+#cargo.target = "wasm32-unknown-unknown"
+
+[[language]]
+name = "haskell"
+diagnostic-severity = "Warning"
+
+[[language]]
+name = "python"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "markdown"
+language-servers = [ {name = "ltex" }]
+
+[[language]]
+name = "latex"
+language-servers = [ {name = "ltex" }]

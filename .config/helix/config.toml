@@ -1,0 +1,26 @@
+theme = "manual"
+
+[editor]
+mouse=false
+auto-pairs = false
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.whitespace.render]
+space = "none"
+tab = "all"
+newline = "all"
+
+[editor.whitespace.characters]
+space = "·"
+nbsp = "⍽"
+tab = "→"
+#newline = "⏎"
+newline = "·"
+tabpad = "→" # Tabs will look like "→···" (depending on tab width)
+
+[editor.soft-wrap]
+enable = true
