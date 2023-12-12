@@ -41,13 +41,13 @@ set $term alacritty
 
 # Application launcher
 #set $menu dmenu_run -nb "$background" -nf "$foreground" -sb "$special1" -sf "$foreground"
-set $menu "wofi"
+set $menu "wofi -i --show drun"
 
 # Screenshot / Screencast
 set $screenshot grim $HOME/screenshot.png && firefox $HOME/screenshot.png
 set $screenshotselect grim -g "$(slurp)" $HOME/screenshot.png && firefox $HOME/screenshot.png
-set $screencast $HOME/Development/repos/wf-recorder/build/wf-recorder -f $HOME/screencast.mp4 && firefox $HOME/screencast.mp4
-set $screencastselect $HOME/Development/repos/wf-recorder/build/wf-recorder -g "$(slurp)" -f $HOME/screencast.mp4 && firefox $HOME/screencast.mp4
+set $screencast 'rm $HOME/screencast.mp4; wf-recorder -t -f $HOME/screencast.mp4 && firefox $HOME/screencast.mp4'
+set $screencastselect 'rm $HOME/screencast.mp4; wf-recorder -t -g "$(slurp)" -f $HOME/screencast.mp4 && firefox $HOME/screencast.mp4'
 set $screencastend pkill --signal SIGINT wf-recorder
 
 ## Lock screen
@@ -88,20 +88,26 @@ client.unfocused $transparent $background $foreground $color7 $background
 client.focused_inactive $transparent $background $foreground $color7 $background
 
 # Gaps
-gaps inner 10
-gaps outer 30
+#gaps inner 10
+#gaps outer 10
 
 # Input
-input 1:1:AT_Translated_Set_2_keyboard {
+input * {
+    xkb_layout "de"
+    xkb_variant "us"
     xkb_options caps:escape
 }
 
 # Laptop touchpad
-input 1267:12341:ELAN1301:00_04F3:3035_Touchpad {
-    middle_emulation enabled
+input 1267:12693:ELAN0678:00_04F3:3195_Touchpad {
+    middle_emulation disabled
     scroll_method two_finger
     tap enabled
     dwt disabled
+}
+
+input 2:10:TPPS/2_Elan_TrackPoint {
+    pointer_accel -0.5
 }
 
 # Gaming mouse
@@ -110,15 +116,17 @@ input 1133:49970:Logitech_Gaming_Mouse_G502 {
     pointer_accel 0.1
 }
 
-seat seat0 hide_cursor 10000
+# seat seat0 hide_cursor 10000
 
 input 1356:1476:Sony_Computer_Entertainment_Wireless_Controller_Touchpad {
     events disabled
 }
 
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
 exec swayidle \
-  timeout 100 'swaymsg "output eDP-1 dpms off"' \
-      resume 'swaymsg "output eDP-1 dpms on"'
+  timeout 100 'swaymsg "output eDP-1 dpms off; exec brightnessctl -d tpacpi::kbd_backlight -s; exec brightnessctl -d tpacpi::kbd_backlight s 0"' \
+      resume 'swaymsg "output eDP-1 dpms on; exec brightnessctl -d tpacpi::kbd_backlight -r"'
 
 # }}}
 # Key bindings {{{
@@ -128,6 +136,8 @@ bindsym $mod+Control+q exec qutebrowser
 bindsym $mod+Control+h exec $term -e htop
 bindsym $mod+Control+c exec $term -e cava
 bindsym $mod+Control+n exec $term -e "nvim $HOME/Documents/notes.txt"
+
+bindsym $mod+Escape exec swaylock
 
 # Start terminal
 bindsym $mod+Return exec $term
@@ -142,25 +152,26 @@ bindsym $mod+semicolon exec $menu
 # Monitor brightness
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
-#bindsym Shift+XF86MonBrightnessDown exec alacritty
-#bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +50%
+bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 1%-
+bindsym Shift+XF86MonBrightnessUp exec brightnessctl set +1%
 
 # Keyboard brightness
 #bindsym XF86KbdBrightnessDown exec xbacklight -steps 30 -c asus::kbd_backlight 0
 #bindsym XF86KbdBrightnessUp exec xbacklight -steps 30 -c asus::kbd_backlight 100
 
 # Volume
-bindsym XF86AudioRaiseVolume exec amixer -q sset Master 5%+
-bindsym XF86AudioLowerVolume exec amixer -q sset Master 5%-
-bindsym Shift+XF86AudioRaiseVolume exec amixer -q sset Master 1%+
-bindsym Shift+XF86AudioLowerVolume exec amixer -q sset Master 1%-
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioRaiseVolume exec amixer sset 'Master' 5%+ && pkill -x -RTMIN+11 waybar
+bindsym XF86AudioLowerVolume exec amixer sset 'Master' 5%- && pkill -x -RTMIN+11 waybar
+bindsym Shift+XF86AudioRaiseVolume exec amixer sset 'Master' 1%+ && pkill -x -RTMIN+11 waybar
+bindsym Shift+XF86AudioLowerVolume exec amixer sset 'Master' 1%- && pkill -x -RTMIN+11 waybar
+bindsym XF86AudioMute exec amixer sset 'Master' toggle && pkill -x -RTMIN+11 waybar
+bindsym XF86AudioMicMute exec amixer sset 'Capture' toggle && pkill -x -RTMIN+11 waybar
 
 # Lock screen
 bindsym pause exec $lock
 
 # Disable gaps
-bindsym $mod+g       gaps inner all set 10; gaps outer all set 30
+bindsym $mod+g       gaps inner all set 10; gaps outer all set 10
 bindsym $mod+Shift+g gaps inner all set 0;  gaps outer all set 0
 
 # Screenshot / Screencast
@@ -175,8 +186,16 @@ bindsym Alt+Print exec $screencastend
 #bindsym Control+XF86PowerOff exec systemctl poweroff
 
 # Disable mouse
-bindsym $mod+q input 1267:12341:ELAN1301:00_04F3:3035_Touchpad events toggle
+bindsym $mod+q input 1267:12693:ELAN0678:00_04F3:3195_Touchpad events toggle
 
+bindsym Home exec killall -USR1 speedy
+bindsym Insert exec killall -USR1 askthebot
+bindsym --release Insert exec killall -USR2 askthebot
+
+# Bind caps lock
+# Abuses https://github.com/swaywm/sway/issues/7549
+bindcode --input-device=1133:49970:Logitech_Gaming_Mouse_G502_Keyboard 63 exec mumble rpc togglemute
+ 
 # Reload configuration
 bindsym $mod+Shift+c reload
 
@@ -227,6 +246,9 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+bindsym $mod+greater move workspace to output right
+bindsym $mod+less move workspace to output left
+
 # Split direction
 bindsym $mod+b splith
 bindsym $mod+v splitv
@@ -263,42 +285,41 @@ bindsym $mod+r mode "resize"
 # }}}
 # Status bar {{{
 
-bar {
-    status_command while true; \
-    do \
-        echo "\| Battery $(echo \"\
-          100 * \
-          $(cat /sys/class/power_supply/BAT0/energy_now) / \
-          $(cat /sys/class/power_supply/BAT0/energy_full)\"\
-        | bc) \
-      % \| $(echo \"scale=3; $(cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq) / 1000000.0\" | bc) GHz \|\
-      $(date '+%A %Y-%m-%d %T | ')\
-      "; sleep 1; done;
-    position bottom
-    font inconsolata 12
-
-    colors {
-        statusline $foreground
-        background $bar_bg
-        focused_workspace $special1 $bar_bg $foreground
-        active_workspace $special1 $bar_bg $foreground
-        inactive_workspace $bar_bg $bar_bg $foreground
-    }
-}
+bar swaybar_command waybar
+#bar {
+    #status_command while true; \
+    #do \
+        #echo "\| $(acpi)\
+      #\| Load $(top -bn1 | grep load | awk '{printf \"%.2f %.2f %.2f\", $(NF-2), $(NF-1), $(NF-0)}') \
+      #\| Timew $(timew | head -n1) $(timew | sed -n 's/.*Total *//p')\
+      #\| $(date '+%A %Y-%m-%d %R | ')\
+      #"; sleep 10; done;
+    #position bottom
+    #font inconsolata 12
+#
+    #tray {
+        #icon_theme Adwaita
+    #}
+#
+    #colors {
+        #statusline $foreground
+        #background $bar_bg
+        #focused_workspace $special1 $bar_bg $foreground
+        #active_workspace $special1 $bar_bg $foreground
+        #inactive_workspace $bar_bg $bar_bg $foreground
+    #}
+#}
 
 # }}}
 # Startup applications {{{
 
-exec systemctl --user import-environment XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
-exec dbus-update-activation-environment WAYLAND_DISPLAY
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd --all
 
 # Start kdeconnect
-exec /usr/lib/x86_64-linux-gnu/libexec/kdeconnectd
+exec /usr/lib/kdeconnectd
 exec /usr/bin/kdeconnect-indicator
+exec /usr/bin/udiskie --appindicator
 
-exec /usr/bin/nextcloud
-exec /usr/local/bin/mako --default-timeout 5000
-
-# Pywal colorscheme on reload
-#exec wal -R
-# }}}
+exec /usr/bin/mako --default-timeout 5000
+exec /usr/bin/nm-applet

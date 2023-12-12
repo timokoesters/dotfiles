@@ -19,8 +19,8 @@ shopt -s histappend
 shopt -s globstar
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=200000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -95,6 +95,18 @@ fi
 #alias la='ls -A'
 #alias l='ls -CF'
 
+# If there are multiple matches for completion, Tab should cycle through them
+bind 'TAB:menu-complete'
+# And Shift-Tab should cycle backwards
+bind '"\e[Z": menu-complete-backward'
+
+# Display a list of the matching files
+bind "set show-all-if-ambiguous on"
+
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+bind "set menu-complete-display-prefix on"
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -116,14 +128,144 @@ if ! shopt -oq posix; then
 fi
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# custom theming
+#export QT_QPA_PLATFORMTHEME=gnome
+#export QT_STYLE_OVERRIDE=kvantum
+#export XDG_CURRENT_DESKTOP=KDE
+export XDG_CURRENT_DESKTOP=sway
+export QT_QPA_PLATFORM=wayland
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export XDG_SESSION_TYPE=wayland
+# make firefox use dolphin - this breaks wofi
+#export GTK_USE_PORTAL=1
+#export GDK_DEBUG=portals
+# removes window outlines and stuff
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# Firefox fix just in case
+export MOZ_ENABLE_WAYLAND=1
+# java fix
+export _JAVA_AWT_WM_NONREPARENTING=1
+export ECORE_EVAS_ENGINE=wayland_egl
+export ELM_ENGINE=wayland_egl
+
+export SDL_AUDIODRIVER=alsa
+
+# cuda=rocm weirdness
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
+
+#export XDG_CURRENT_DESKTOP=KDE
+export KDE_SESSION_VERSION="5"
+
+# Default editor
+export EDITOR=/usr/bin/helix
+export VISUAL=$EDITOR
+export TERMINAL=alacritty
+
+# Keyboard options (sway)
+export XKB_DEFAULT_OPTIONS=caps:escape
+
+# XDG dirs
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_DATA_HOME="$HOME"/.local/share
+
+# Unclutter home
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
+source "$HOME/.cargo/env"
+
+#export TERM='xterm-256color'
+
 #gpgconf --launch gpg-agent
 
-alias ledger='nvim $HOME/Documents/hledger.journal'
+# SSH agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+
+alias edit='$EDITOR'
+hexedit() {
+    xxd $1 $1.hex && edit $1.hex && xxd -r $1.hex $1
+}
+alias ledger='edit $HOME/Documents/hledger.journal'
 alias hledger='hledger -f $HOME/Documents/hledger.journal'
+alias hledger-ui='hledger-ui -f $HOME/Documents/hledger.journal'
 alias hledger-web='hledger-web -f $HOME/Documents/hledger.journal'
 alias echome='pactl load-module module-loopback latency_msec=1'
 alias echooff='pactl unload-module module-loopback'
-alias dream='nvim /home/timo/Documents/Dreams/$(date +%Y/%m/%d).txt'
-alias diary='nvim /home/timo/Documents/Diary/$(date +%Y-%m-%d).txt'
-alias todo='nvim /home/timo/todo.md'
+alias dream='edit /home/timo/Documents/Dreams/$(date +%Y/%m/%d).txt'
+alias dreamd='edit /home/timo/Documents/Dreams/2023'
+alias diary='edit /home/timo/Documents/Diary/$(date -d "3 hours ago" +%Y-%m-%d).txt'
+alias diaryd='edit /home/timo/Documents/Diary/'
+diaryw() {
+    edit /home/timo/Documents/Diary/$(date -d "$1" +%Y-%m-%d).txt
+}
+alias write='edit /home/timo/Documents/Write/'
+alias todo='edit /home/timo/Documents/Write/todo.md'
 alias scan='gocr $HOME/screenshot.png'
+alias backup='sudo borgmatic --verbosity 1 --list --stats'
+
+llama() {
+    /home/timo/Development/Repos/llama.cpp/main \
+        -m /home/timo/Development/Repos/llama.cpp/model-llama2-uncensored \
+        --keep -1 \
+        --repeat_penalty 1.0 \
+        --prompt-cache /home/timo/Development/Repos/llama.cpp/prompt-cache \
+        -i -r "
+
+" --in-prefix "### HUMAN:
+" --in-suffix "
+### RESPONSE:
+" -f /home/timo/Development/Repos/llama.cpp/prompt-$1.txt \
+        2> /dev/null \
+        | while IFS= read -r -n1 -d$ c; do
+            echo -n "$c"
+            if [[ $c = "." ]]; then echo ""; fi
+         done \
+        | awk '/HUMAN:/ {f=0} /HUMAN:/ && g {printf "> "} f && g && NF {print; fflush()} /start/ {g=1}  /RESPONSE:/ {f=1}'
+}
+askbot() {
+    llama bot | tee >( \
+        sed -u -e 's/"//g' -e 's/^.*$/(voice_kal_diphone)(SayText "&")/' \
+        | festival \
+    )
+}
+askbob() {
+    llama bob | tee >( \
+        sed -u -e 's/"//g' -e 's/^.*$/(voice_kal_diphone)(SayText "&")/' \
+        | festival \
+    )
+}
+askanna() {
+    llama anna | tee >( \
+        sed -u -e 's/"//g' -e 's/^.*$/(voice_cmu_us_slt_cg)(SayText "&")/' \
+        | festival \
+    )
+}
+askdenis() {
+    llama denis | tee >( \
+        sed -u -e 's/"//g' -e 's/^.*$/(voice_kal_diphone)(SayText "&")/' \
+        | festival \
+    )
+}
+
+alias xwaylaunch='GDK_BACKEND=x11 QT_QPA_PLATFORM=xcb CLUTTER_BACKEND= SDL_VIDEODRIVER= XDG_SESSION_TYPE= WAYLAND_DISPLAY= '
+export QT_QPA_PLATFORM=wayland
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export XDG_SESSION_TYPE=wayland
+
+PATH="/home/timo/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/timo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/timo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/timo/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/timo/perl5"; export PERL_MM_OPT;
