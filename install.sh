@@ -10,6 +10,11 @@ ln -sf $HOME/dotfiles/.config/termite/config $HOME/.config/termite/config
 ln -sf $HOME/dotfiles/.config/alacritty/alacritty.yml $HOME/.config/alacritty/alacritty.yml
 ln -sf $HOME/dotfiles/.config/helix/config.toml $HOME/.config/helix/config.toml
 ln -sf $HOME/dotfiles/.config/helix/languages.toml $HOME/.config/helix/languages.toml
+ln -sf $HOME/dotfiles/.config/helix/themes/github_light_high_contrast.toml $HOME/.config/helix/themes/github_light_high_contrast.toml
+ln -sf $HOME/dotfiles/.local/share/dark-mode.d/alacritty.sh $HOME/.local/share/dark-mode.d/alacritty.sh
+ln -sf $HOME/dotfiles/.local/share/dark-mode.d/gtkqt.sh $HOME/.local/share/dark-mode.d/gtkqt.sh
+ln -sf $HOME/dotfiles/.local/share/light-mode.d/alacritty.sh $HOME/.local/share/light-mode.d/alacritty.sh
+ln -sf $HOME/dotfiles/.local/share/light-mode.d/gtkqt.sh $HOME/.local/share/light-mode.d/gtkqt.sh
 ln -sf $HOME/dotfiles/.local/share/konsole/gruvbox.colorscheme $HOME/.local/share/konsole/gruvbox.colorscheme
 ln -sf $HOME/dotfiles/.bashrc $HOME/.bashrc
 ln -sf $HOME/dotfiles/.zshrc $HOME/.zshrc
@@ -18,3 +23,4 @@ ln -sf $HOME/dotfiles/.zshenv $HOME/.zshenv
 ln -sf $HOME/dotfiles/.zprofile $HOME/.zprofile
 ln -sf $HOME/dotfiles/.tmux/tmuxline $HOME/.tmux/tmuxline
 ln -sf $HOME/dotfiles/.nethackrc $HOME/.nethackrc
+

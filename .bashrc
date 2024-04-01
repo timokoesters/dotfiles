@@ -158,9 +158,11 @@ export HSA_OVERRIDE_GFX_VERSION=10.3.0
 export KDE_SESSION_VERSION="5"
 
 # Default editor
-export EDITOR=/usr/bin/helix
+export EDITOR=/home/timo/.local/share/cargo/bin/hx
 export VISUAL=$EDITOR
 export TERMINAL=alacritty
+
+export HELIX_RUNTIME="$HOME"/Development/Repos/helix/runtime
 
 # Keyboard options (sway)
 export XKB_DEFAULT_OPTIONS=caps:escape
@@ -202,13 +204,8 @@ alias hledger-ui='hledger-ui -f $HOME/Documents/hledger.journal'
 alias hledger-web='hledger-web -f $HOME/Documents/hledger.journal'
 alias echome='pactl load-module module-loopback latency_msec=1'
 alias echooff='pactl unload-module module-loopback'
-alias dream='edit /home/timo/Documents/Dreams/$(date +%Y/%m/%d).txt'
-alias dreamd='edit /home/timo/Documents/Dreams/2023'
-alias diary='edit /home/timo/Documents/Diary/$(date -d "3 hours ago" +%Y-%m-%d).txt'
-alias diaryd='edit /home/timo/Documents/Diary/'
-diaryw() {
-    edit /home/timo/Documents/Diary/$(date -d "$1" +%Y-%m-%d).txt
-}
+alias diary='edit /home/timo/Documents/typst/diary.typ +99999'
+alias dream='edit /home/timo/Documents/typst/dreams.typ +99999'
 alias write='edit /home/timo/Documents/Write/'
 alias todo='edit /home/timo/Documents/Write/todo.md'
 alias scan='gocr $HOME/screenshot.png'

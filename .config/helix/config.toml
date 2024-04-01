@@ -24,3 +24,34 @@ tabpad = "→" # Tabs will look like "→···" (depending on tab width)
 
 [editor.soft-wrap]
 enable = true
+
+[keys.insert]
+"C-d" = [
+  ":insert-output echo -n `date +\"%Y-%m-%d\"`",
+  "ensure_selections_forward",
+  "move_char_right",
+]
+
+[keys.normal]
+# Calc
+"C-k" = [
+  "move_char_right", # Select whole set of equations
+  "goto_prev_paragraph",
+  "goto_next_paragraph",
+  "trim_selections", # Remove empty lines
+  "extend_to_line_bounds", # Include \n
+  ":pipe sd ' ?=.*\\n?\\z' '' | { x=$(cat); echo \"$x\" = \"$(kalker \"$x\" 2>&1)\"; }",
+  ":append-output echo -n =", # Move cursor back to last equal sign
+  "search_selection",
+  "delete_selection",
+  "search_prev",
+]
+# AI Append
+"C-ret" = ["select_all", ":pipe sd '\\z' 'ai generated text\\n'", "collapse_selection"]
+
+# Typst shortcuts
+[keys.normal."C-t"]
+# Compile and open
+"o" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/typst.pdf", ":run-shell-command okular /home/timo/typst.pdf", "jump_backward"]
+# Compile
+"c" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/typst.pdf", "jump_backward"]

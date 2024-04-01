@@ -1,5 +1,6 @@
 [language-server.ltex]
 command = "/usr/bin/ltex-ls"
+config = { ltex.language = "de-DE" }
 
 [[language]]
 name = "markdown"
@@ -29,3 +30,7 @@ language-servers = [ {name = "ltex" }]
 [[language]]
 name = "latex"
 language-servers = [ {name = "ltex" }]
+
+[[language]]
+name = "typst"
+language-servers = [ {name = "typst-lsp"}, {name = "ltex" }]
