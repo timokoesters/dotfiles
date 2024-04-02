@@ -52,6 +52,6 @@ enable = true
 # Typst shortcuts
 [keys.normal."C-t"]
 # Compile and open
-"o" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/typst.pdf", ":run-shell-command okular /home/timo/typst.pdf", "jump_backward"]
+"o" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", ":run-shell-command okular /home/timo/.typst.pdf", "jump_backward"]
 # Compile
-"c" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/typst.pdf", "jump_backward"]
+"c" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", "jump_backward"]
