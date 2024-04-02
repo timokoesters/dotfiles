@@ -11,6 +11,7 @@ ln -sf $HOME/dotfiles/.config/alacritty/alacritty.yml $HOME/.config/alacritty/al
 ln -sf $HOME/dotfiles/.config/helix/config.toml $HOME/.config/helix/config.toml
 ln -sf $HOME/dotfiles/.config/helix/languages.toml $HOME/.config/helix/languages.toml
 ln -sf $HOME/dotfiles/.config/helix/themes/github_light_high_contrast.toml $HOME/.config/helix/themes/github_light_high_contrast.toml
+ln -sf $HOME/dotfiles/.config/helix/themes/github_dark_high_contrast.toml $HOME/.config/helix/themes/github_dark_high_contrast.toml
 ln -sf $HOME/dotfiles/.local/share/dark-mode.d/alacritty.sh $HOME/.local/share/dark-mode.d/alacritty.sh
 ln -sf $HOME/dotfiles/.local/share/dark-mode.d/gtkqt.sh $HOME/.local/share/dark-mode.d/gtkqt.sh
 ln -sf $HOME/dotfiles/.local/share/light-mode.d/alacritty.sh $HOME/.local/share/light-mode.d/alacritty.sh

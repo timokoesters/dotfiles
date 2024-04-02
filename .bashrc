@@ -127,72 +127,21 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-# custom theming
-#export QT_QPA_PLATFORMTHEME=gnome
-#export QT_STYLE_OVERRIDE=kvantum
-#export XDG_CURRENT_DESKTOP=KDE
-export XDG_CURRENT_DESKTOP=sway
-export QT_QPA_PLATFORM=wayland
-export CLUTTER_BACKEND=wayland
-export SDL_VIDEODRIVER=wayland
-export XDG_SESSION_TYPE=wayland
-# make firefox use dolphin - this breaks wofi
-#export GTK_USE_PORTAL=1
-#export GDK_DEBUG=portals
-# removes window outlines and stuff
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-# Firefox fix just in case
-export MOZ_ENABLE_WAYLAND=1
-# java fix
-export _JAVA_AWT_WM_NONREPARENTING=1
-export ECORE_EVAS_ENGINE=wayland_egl
-export ELM_ENGINE=wayland_egl
 
-export SDL_AUDIODRIVER=alsa
 
-# cuda=rocm weirdness
-export HSA_OVERRIDE_GFX_VERSION=10.3.0
 
-#export XDG_CURRENT_DESKTOP=KDE
-export KDE_SESSION_VERSION="5"
 
-# Default editor
-export EDITOR=/home/timo/.local/share/cargo/bin/hx
-export VISUAL=$EDITOR
-export TERMINAL=alacritty
 
-export HELIX_RUNTIME="$HOME"/Development/Repos/helix/runtime
-
-# Keyboard options (sway)
-export XKB_DEFAULT_OPTIONS=caps:escape
-
-# XDG dirs
-export XDG_CONFIG_HOME="$HOME"/.config
-export XDG_CACHE_HOME="$HOME"/.cache
-export XDG_DATA_HOME="$HOME"/.local/share
-
-# Unclutter home
-export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
-export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
-export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
-export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
-export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
-export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
-source "$HOME/.cargo/env"
-
-#export TERM='xterm-256color'
 
 #gpgconf --launch gpg-agent
 
 # SSH agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
-fi
+# if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+# fi
+# if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+#     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+# fi
 
 alias edit='$EDITOR'
 hexedit() {
@@ -266,3 +215,71 @@ PERL5LIB="/home/timo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/timo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/timo/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/timo/perl5"; export PERL_MM_OPT;
+. "/home/timo/.local/share/cargo/env"
+
+
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh-agent.socket
+# custom theming
+#export QT_QPA_PLATFORMTHEME=gnome
+#export QT_STYLE_OVERRIDE=kvantum
+export XDG_CURRENT_DESKTOP=KDE
+#export XDG_CURRENT_DESKTOP=sway
+export QT_QPA_PLATFORM=wayland
+export CLUTTER_BACKEND=wayland
+export SDL_VIDEODRIVER=wayland
+export XDG_SESSION_TYPE=wayland
+# make firefox use dolphin - this breaks wofi
+#export GTK_USE_PORTAL=1
+#export GDK_DEBUG=portals
+# removes window outlines and stuff
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# Firefox fix just in case
+export MOZ_ENABLE_WAYLAND=1
+# java fix
+export _JAVA_AWT_WM_NONREPARENTING=1
+export ECORE_EVAS_ENGINE=wayland_egl
+export ELM_ENGINE=wayland_egl
+
+export SDL_AUDIODRIVER=alsa
+
+# cuda=rocm weirdness
+export HSA_OVERRIDE_GFX_VERSION=10.3.0
+
+# cuda
+export PATH=/opt/cuda/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/opt/cuda/lib64
+
+export KDE_SESSION_VERSION="5"
+
+# Default editor
+export EDITOR=/home/timo/.local/share/cargo/bin/hx
+export VISUAL=$EDITOR
+export TERMINAL=alacritty
+
+export HELIX_RUNTIME="$HOME"/Development/Repos/helix/runtime
+
+# Keyboard options (sway)
+export XKB_DEFAULT_OPTIONS=caps:escape
+
+# XDG dirs
+export XDG_CONFIG_HOME="$HOME"/.config
+export XDG_CACHE_HOME="$HOME"/.cache
+export XDG_DATA_HOME="$HOME"/.local/share
+
+# Android Studio
+export ANDROID_HOME=/home/timo/Android/Sdk/
+export ANDROID_NDK_HOME=/home/timo/Android/Sdk/ndk/25.2.9519653/
+export LIBRARY_PATH=/home/timo/Android/Sdk/ndk/25.2.9519653/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/14.0.7/lib/
+
+# Unclutter home
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
+export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
+export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
+export CARGO_HOME="$XDG_DATA_HOME"/cargo
+export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
+source "$HOME/.cargo/env"
+
+#export TERM='xterm-256color'
