@@ -35,16 +35,41 @@ enable = true
 [keys.normal]
 # AI Append
 "C-ret" = [
+  "select_all",
+  ":pipe curl http://localhost:4051/text_generation --data-binary @-",
+  "ensure_selections_forward",
+  "collapse_selection",
+]
+
+# "C-ret" = [
+#   "extend_to_line_bounds",
+#   "trim_selections", # Remove \n
+#   "ensure_selections_forward",
+#   "flip_selections",
+#   "select_mode",
+#   "goto_file_start",
+#   ":pipe curl http://localhost:4051/text_generation --data-binary @-",
+#   "ensure_selections_forward",
+#   "normal_mode",
+#   "collapse_selection",
+# ]
+
+# TTS R=Rede mit mir
+"C-r" = [
+  "save_selection",
   "extend_to_line_bounds",
   "trim_selections", # Remove \n
   "ensure_selections_forward",
-  "flip_selections",
   "select_mode",
-  "goto_file_start",
-  ":pipe curl http://localhost:4051/text_generation --data-binary @-",
-  "ensure_selections_forward",
+  "goto_file_end",
+  ":pipe-to spd-say -C && spd-say -e",
   "normal_mode",
-  "collapse_selection",
+  "jump_backward",
+  "jump_backward",
+]
+
+"C-R" = [
+  ":run-shell-command spd-say -C",
 ]
 
 # Calc
@@ -54,6 +79,7 @@ enable = true
   "goto_next_paragraph",
   "trim_selections", # Remove empty lines
   "extend_to_line_bounds", # Include \n
+  # Select line without last equal sign, then pipe it into both echo and kalker
   ":pipe sd ' ?=.*\\n?\\z' '' | { x=$(cat); echo \"$x\" = \"$(kalker \"$x\" 2>&1)\"; }",
   ":append-output echo -n =", # Move cursor back to last equal sign
   "search_selection",

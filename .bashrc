@@ -223,8 +223,8 @@ PERL_MM_OPT="INSTALL_BASE=/home/timo/perl5"; export PERL_MM_OPT;
 # custom theming
 #export QT_QPA_PLATFORMTHEME=gnome
 #export QT_STYLE_OVERRIDE=kvantum
-export XDG_CURRENT_DESKTOP=KDE
-#export XDG_CURRENT_DESKTOP=sway
+if [ "$HOSTNAME" = "desktop" ]; then export XDG_CURRENT_DESKTOP=KDE; fi
+if [ "$HOSTNAME" = "laptop" ]; then export XDG_CURRENT_DESKTOP=sway; fi
 export QT_QPA_PLATFORM=wayland
 export CLUTTER_BACKEND=wayland
 export SDL_VIDEODRIVER=wayland
