@@ -18,8 +18,8 @@ newline = "all"
 space = "·"
 nbsp = "⍽"
 tab = "→"
-#newline = "⏎"
-newline = "·"
+newline = "⏎"
+# newline = "·"
 tabpad = "→" # Tabs will look like "→···" (depending on tab width)
 
 [editor.soft-wrap]

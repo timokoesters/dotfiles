@@ -1,6 +1,6 @@
 [language-server.ltex]
 command = "/usr/bin/ltex-ls"
-config = { ltex.language = "de-DE" }
+# config = { ltex.language = "de-DE" }
 
 [[language]]
 name = "markdown"

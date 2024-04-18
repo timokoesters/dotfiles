@@ -6,7 +6,7 @@
 inherits = "github_light"
 
 # Timo's changes
-"ui.virtual.whitespace" = "#0e1116"
+"ui.virtual.whitespace" = "#88929d"
 "ui.virtual.jump-label" = "#f00000"
 
 [palette]
