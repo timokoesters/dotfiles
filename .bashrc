@@ -215,7 +215,7 @@ PERL5LIB="/home/timo/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/timo/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/timo/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/timo/perl5"; export PERL_MM_OPT;
-. "/home/timo/.local/share/cargo/env"
+# . "/home/timo/.local/share/cargo/env"
 
 
 # export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

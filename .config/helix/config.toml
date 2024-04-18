@@ -80,7 +80,7 @@ enable = true
   "trim_selections", # Remove empty lines
   "extend_to_line_bounds", # Include \n
   # Select line without last equal sign, then pipe it into both echo and kalker
-  ":pipe sd ' ?=.*\\n?\\z' '' | { x=$(cat); echo \"$x\" = \"$(kalker \"$x\" 2>&1)\"; }",
+  ":pipe sd ' ?=.*\\n?\\z' '' | { x=$(cat); echo \"$x\" \"$(kalker \"$x\" 2>&1)\"; }",
   ":append-output echo -n =", # Move cursor back to last equal sign
   "search_selection",
   "delete_selection",
@@ -90,6 +90,6 @@ enable = true
 # Typst shortcuts
 [keys.normal."C-t"]
 # Compile and open
-"o" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", ":run-shell-command okular /home/timo/.typst.pdf", "jump_backward"]
+"o" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", ":run-shell-command firefox /home/timo/.typst.pdf", "jump_backward"]
 # Compile
 "c" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", "jump_backward"]
