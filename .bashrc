@@ -160,6 +160,12 @@ alias todo='edit /home/timo/Documents/Write/todo.md'
 alias scan='gocr $HOME/screenshot.png'
 alias backup='sudo borgmatic --verbosity 1 --list --stats'
 
+alias less='less -R'
+
+rg() {
+    if [ -t 1 ]; then /usr/bin/rg -C2 --json "$@" | delta; else /usr/bin/rg "$@"; fi
+}
+
 llama() {
     /home/timo/Development/Repos/llama.cpp/main \
         -m /home/timo/Development/Repos/llama.cpp/model-llama2-uncensored \
