@@ -311,6 +311,10 @@ bar swaybar_command waybar
 #}
 
 # }}}
+
+for_window [workspace="8"] floating enable
+
+
 # Startup applications {{{
 
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_SESSION_TYPE XDG_CURRENT_DESKTOP

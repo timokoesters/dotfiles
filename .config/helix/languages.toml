@@ -23,14 +23,29 @@ diagnostic-severity = "Warning"
 name = "python"
 indent = { tab-width = 4, unit = "    " }
 
-[[language]]
-name = "markdown"
-language-servers = [ {name = "ltex" }]
+# [[language]]
+# name = "markdown"
+# language-servers = [ {name = "ltex" }]
 
 [[language]]
 name = "latex"
 language-servers = [ {name = "ltex" }]
 
-[[language]]
-name = "typst"
-language-servers = [ {name = "typst-lsp"}, {name = "ltex" }]
+# [[language]]
+# name = "typst"
+# language-servers = [ {name = "typst-lsp"}, {name = "ltex" } ]
+# language-servers = [ {name = "typst-lsp"} ]
+
+[language-server.vscode-css-language-server]
+name = "vscode-css-language-server"
+command = "/usr/bin/vscode-css-language-server"
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable=true } }
+format = { newlineBetweenSelectors = false, newlineBetweenRules = false }
+provideFormatter = true
+
+[language-server.vscode-html-language-server.config]
+html = { validate = { enable=true } }
+format = {}
+provideFormatter = true

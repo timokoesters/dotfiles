@@ -27,9 +27,12 @@ enable = true
 
 [keys.insert]
 "C-d" = [
-  ":insert-output echo -n `date +\"%Y-%m-%d\"`",
+  ":insert-output echo -n \"== $(date -d '3 hours ago' +%Y-%m-%d)\n\n/ Wer:\n/ Was:\n/ Gelernt:\n/ Bereut:\n/ Körper:\n/ Gedanken:\n/ Lustig:\n/ Idee:\n/ Morgen:\n/ TLDR:\"",
   "ensure_selections_forward",
-  "move_char_right",
+  "flip_selections",
+  "move_line_down",
+  "move_line_down",
+  "insert_at_line_end"
 ]
 
 [keys.normal]
@@ -74,14 +77,14 @@ enable = true
 
 # Calc
 "C-k" = [
-  "move_char_right", # Select whole set of equations
-  "goto_prev_paragraph",
-  "goto_next_paragraph",
-  "trim_selections", # Remove empty lines
+  # "move_char_right", # Select whole set of equations
+  # "goto_prev_paragraph",
+  # "goto_next_paragraph",
+  # "trim_selections", # Remove empty lines
   "extend_to_line_bounds", # Include \n
   # Select line without last equal sign, then pipe it into both echo and kalker
-  ":pipe sd ' ?=.*\\n?\\z' '' | { x=$(cat); echo \"$x\" \"$(kalker \"$x\" 2>&1)\"; }",
-  ":append-output echo -n =", # Move cursor back to last equal sign
+  ":pipe sd ' ?[=≈].*\\n?\\z' '' | { x=$(cat); echo \"$x ≈\" \"$(kalker -p 16 \"$x\" 2>&1)\"; }",
+  ":append-output echo -n ≈", # Move cursor back to last equal sign
   "search_selection",
   "delete_selection",
   "search_prev",
@@ -90,6 +93,8 @@ enable = true
 # Typst shortcuts
 [keys.normal."C-t"]
 # Compile and open
-"o" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", ":run-shell-command firefox /home/timo/.typst.pdf", "jump_backward"]
+# "o" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", ":run-shell-command firefox /home/timo/.typst.pdf", "jump_backward"]
+"o" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/.typst.pdf", ":run-shell-command firefox /home/timo/.typst.pdf", "jump_backward"]
 # Compile
-"c" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", "jump_backward"]
+"c" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/.typst.pdf", "jump_backward"]
+# "c" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", "jump_backward"]
