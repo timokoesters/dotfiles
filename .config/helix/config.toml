@@ -36,6 +36,7 @@ enable = true
 ]
 
 [keys.normal]
+"x" = ["extend_to_line_bounds", "select_mode"]
 # AI Append
 "C-ret" = [
   "select_all",
