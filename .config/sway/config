@@ -324,6 +324,7 @@ exec dbus-update-activation-environment --systemd --all
 exec /usr/lib/kdeconnectd
 exec /usr/bin/kdeconnect-indicator
 exec /usr/bin/udiskie --appindicator
+exec /usr/lib/xdg-desktop-portal -r
 
 exec /usr/bin/mako --default-timeout 5000
 exec /usr/bin/nm-applet

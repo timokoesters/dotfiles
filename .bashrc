@@ -153,10 +153,10 @@ alias hledger-ui='hledger-ui -f $HOME/Documents/hledger.journal'
 alias hledger-web='hledger-web -f $HOME/Documents/hledger.journal'
 alias echome='pactl load-module module-loopback latency_msec=1'
 alias echooff='pactl unload-module module-loopback'
-alias diary='edit /home/timo/Documents/typst/diary.typ +99999'
-alias dream='edit /home/timo/Documents/typst/dreams.typ +99999'
-alias write='edit /home/timo/Documents/Write/'
-alias todo='edit /home/timo/Documents/Write/todo.md'
+alias diary='edit --working-dir /home/timo/Documents/Write /home/timo/Documents/Write/diary.typ +99999'
+alias dream='edit --working-dir /home/timo/Documents/Write /home/timo/Documents/Write/dreams.typ +99999'
+alias write='edit --working-dir /home/timo/Documents/Write /home/timo/Documents/Write/'
+alias todo='edit --working-dir /home/timo/Documents/Write /home/timo/Documents/Write/todo.md'
 alias scan='gocr $HOME/screenshot.png'
 alias backup='sudo borgmatic --verbosity 1 --list --stats'
 
@@ -263,7 +263,8 @@ export LD_LIBRARY_PATH=/opt/cuda/lib64
 export KDE_SESSION_VERSION="5"
 
 # Default editor
-export EDITOR=/home/timo/.local/share/cargo/bin/hx
+# export EDITOR=/home/timo/.local/share/cargo/bin/hx
+export EDITOR='zeditor --wait'
 export VISUAL=$EDITOR
 export TERMINAL=alacritty
 

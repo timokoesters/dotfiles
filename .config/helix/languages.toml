@@ -5,6 +5,8 @@ command = "/usr/bin/ltex-ls"
 [[language]]
 name = "markdown"
 indent = { tab-width = 4, unit = "    " }
+# language-servers = [ {name = "harper-ls" }]
+
 
 #[[language]]
 #name = "rust"
@@ -23,18 +25,35 @@ diagnostic-severity = "Warning"
 name = "python"
 indent = { tab-width = 4, unit = "    " }
 
-# [[language]]
-# name = "markdown"
-# language-servers = [ {name = "ltex" }]
-
 [[language]]
 name = "latex"
 language-servers = [ {name = "ltex" }]
 
-# [[language]]
-# name = "typst"
+[[language]]
+name = "typst"
 # language-servers = [ {name = "typst-lsp"}, {name = "ltex" } ]
-# language-servers = [ {name = "typst-lsp"} ]
+# language-servers = [ {name = "typst-lsp"}, {name = "harper-ls"} ]
+
+[[language]]
+name = "html"
+# formatter = { command = 'prettier', args = ["--parser", "html", "--plugin", "prettier-plugin-tailwindcss"] }
+formatter = { command = 'rustywind', args = ["--stdin"] }
+language-servers = [ {name = "vscode-html-language-server"} ]
+
+[language-server.tailwindcss-language-server]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
+[language-server.tailwindcss-language-server.config]
+# test
+
+
+# [language-server.harper-ls]
+# command = "harper-ls"
+# args = ["--stdio"]
+
+# [language-server.harper-ls.config.harper-ls.linters]
+# spaces = false
 
 [language-server.vscode-css-language-server]
 name = "vscode-css-language-server"

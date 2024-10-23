@@ -3,6 +3,7 @@ theme = "manual"
 [editor]
 mouse=false
 auto-pairs = false
+text-width = 100
 
 [editor.cursor-shape]
 insert = "bar"
@@ -24,10 +25,11 @@ tabpad = "→" # Tabs will look like "→···" (depending on tab width)
 
 [editor.soft-wrap]
 enable = true
+wrap-at-text-width = true
 
 [keys.insert]
 "C-d" = [
-  ":insert-output echo -n \"== $(date -d '3 hours ago' +%Y-%m-%d)\n\n/ Wer:\n/ Was:\n/ Gelernt:\n/ Bereut:\n/ Körper:\n/ Gedanken:\n/ Lustig:\n/ Idee:\n/ Morgen:\n/ TLDR:\"",
+  ":insert-output echo -n \"=== $(date -d '3 hours ago' +%Y-%m-%d)\n\n/ Wer:\n/ Was:\n/ Gelernt:\n/ Bereut:\n/ Körper:\n/ Gedanken:\n/ Lustig:\n/ Idee:\n/ Morgen:\n/ TLDR:\"",
   "ensure_selections_forward",
   "flip_selections",
   "move_line_down",
@@ -94,8 +96,6 @@ enable = true
 # Typst shortcuts
 [keys.normal."C-t"]
 # Compile and open
-# "o" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", ":run-shell-command firefox /home/timo/.typst.pdf", "jump_backward"]
 "o" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/.typst.pdf", ":run-shell-command firefox /home/timo/.typst.pdf", "jump_backward"]
 # Compile
 "c" = ["save_selection", "select_all", ":pipe-to typst compile - /home/timo/.typst.pdf", "jump_backward"]
-# "c" = ["save_selection", "select_all", ":pipe-to typst compile --root /home/timo/Documents/typst/ - /home/timo/.typst.pdf", "jump_backward"]
