@@ -136,11 +136,17 @@ fi
 #gpgconf --launch gpg-agent
 
 # SSH agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+if [ "$HOSTNAME" = laptop ]; then
+    if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+        ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
+    fi
+    if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+        source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+    fi
+    motd() {
+        echo $(inspiration -s -n1 | sd 'https://www.dwds.de/wb/' '') $(inspiration -a -n1 | sd 'https://www.dwds.de/wb/' '') $(inspiration -v -n1 | sd 'https://www.dwds.de/wb/' '')
+    }
+    motd
 fi
 
 alias edit='$EDITOR'
@@ -161,10 +167,6 @@ alias scan='gocr $HOME/screenshot.png'
 alias backup='sudo borgmatic --verbosity 1 --list --stats'
 
 alias less='less -R'
-
-motd() {
-    echo $(inspiration -s -n1 | sd 'https://www.dwds.de/wb/' '') $(inspiration -a -n1 | sd 'https://www.dwds.de/wb/' '') $(inspiration -v -n1 | sd 'https://www.dwds.de/wb/' '')
-}
 
 rg() {
     if [ -t 1 ]; then /usr/bin/rg -C2 --json "$@" | delta; else /usr/bin/rg "$@"; fi
@@ -299,6 +301,3 @@ export INSPIRATION_DATABASE_URL=postgres://postgres@localhost/inspiration
 source "$HOME/.cargo/env"
 
 #export TERM='xterm-256color'
-
-
-motd
