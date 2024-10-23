@@ -13,6 +13,7 @@
   "restore_on_startup": "none",
   "vim_mode": true,
   "base_keymap": "None",
+  "buffer_line_height": "standard",
   "telemetry": {
     "metrics": false
   },
