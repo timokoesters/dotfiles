@@ -1,0 +1,23 @@
+// Static tasks configuration.
+//
+// Example:
+[
+  {
+    "label": "Compile Typst",
+    "command": "typst compile '$ZED_FILE' /home/timo/.typst.pdf",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": { "program": "/bin/sh" }
+  },
+  {
+    "label": "Compile Typst Firefox",
+    "command": "typst compile '$ZED_FILE' /home/timo/.typst.pdf && firefox /home/timo/.typst.pdf",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false,
+    "reveal": "always",
+    "hide": "on_success",
+    "shell": { "program": "/bin/sh" }
+  }
+]

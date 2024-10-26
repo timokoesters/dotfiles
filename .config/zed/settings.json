@@ -24,7 +24,7 @@
   "tabs": { "git_status": true },
   //"buffer_font_weight": 600,
   "cursor_blink": false,
-  "ui_font_family": "Inconsolata",
+  "ui_font_family": "Nimbus Sans",
   //"ui_font_weight": 600,
   "ui_font_size": 16,
   "soft_wrap": "preferred_line_length",
@@ -51,6 +51,19 @@
     //"font_weight": 600,
     "blinking": "off",
     "cursor_shape": "bar"
+  },
+  "lsp": {
+    "ltex": {
+      "settings": {
+        "ltex": {
+          "language": "en-US",
+          "additionalRules": {
+            "motherTongue": "de-DE",
+            "enablePickyRules": false
+          }
+        }
+      }
+    }
   },
   "outline_panel": { "button": false }
 }

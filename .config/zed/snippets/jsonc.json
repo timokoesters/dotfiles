@@ -1,0 +1,7 @@
+{
+  "ltexde": {
+    "prefix": "ltexde",
+    "body": "{\"lsp\":{\"ltex\":{\"settings\":{\"ltex\":{\"language\":\"de-DE\"}}}}}",
+    "description": "Configure LTeX for de-DE"
+  }
+}
