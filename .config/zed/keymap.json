@@ -29,58 +29,7 @@
       "ctrl-0": "zed::ResetBufferFontSize",
       "ctrl-,": "zed::OpenSettings",
       "ctrl-q": "zed::Quit",
-      "f11": "zed::ToggleFullScreen",
-
-      // window related commands (ctrl-w X)
-      "ctrl-w left": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-w right": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-w up": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w down": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-w h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-w l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-w k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-w ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
-      "ctrl-w ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
-      "ctrl-w ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
-      "ctrl-w ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
-      "ctrl-w shift-left": ["workspace::SwapPaneInDirection", "Left"],
-      "ctrl-w shift-right": ["workspace::SwapPaneInDirection", "Right"],
-      "ctrl-w shift-up": ["workspace::SwapPaneInDirection", "Up"],
-      "ctrl-w shift-down": ["workspace::SwapPaneInDirection", "Down"],
-      "ctrl-w shift-h": ["workspace::SwapPaneInDirection", "Left"],
-      "ctrl-w shift-l": ["workspace::SwapPaneInDirection", "Right"],
-      "ctrl-w shift-k": ["workspace::SwapPaneInDirection", "Up"],
-      "ctrl-w shift-j": ["workspace::SwapPaneInDirection", "Down"],
-      "ctrl-w g t": "pane::ActivateNextItem",
-      "ctrl-w ctrl-g t": "pane::ActivateNextItem",
-      "ctrl-w g shift-t": "pane::ActivatePrevItem",
-      "ctrl-w ctrl-g shift-t": "pane::ActivatePrevItem",
-      "ctrl-w w": "workspace::ActivateNextPane",
-      "ctrl-w ctrl-w": "workspace::ActivateNextPane",
-      "ctrl-w p": "workspace::ActivatePreviousPane",
-      "ctrl-w ctrl-p": "workspace::ActivatePreviousPane",
-      "ctrl-w shift-w": "workspace::ActivatePreviousPane",
-      "ctrl-w ctrl-shift-w": "workspace::ActivatePreviousPane",
-      "ctrl-w v": "pane::SplitVertical",
-      "ctrl-w ctrl-v": "pane::SplitVertical",
-      "ctrl-w s": "pane::SplitHorizontal",
-      "ctrl-w shift-s": "pane::SplitHorizontal",
-      "ctrl-w ctrl-s": "pane::SplitHorizontal",
-      "ctrl-w c": "pane::CloseAllItems",
-      "ctrl-w ctrl-c": "pane::CloseAllItems",
-      "ctrl-w q": "pane::CloseAllItems",
-      "ctrl-w ctrl-q": "pane::CloseAllItems",
-      "ctrl-w o": "workspace::CloseInactiveTabsAndPanes",
-      "ctrl-w ctrl-o": "workspace::CloseInactiveTabsAndPanes",
-      "ctrl-w n": "workspace::NewFileSplitHorizontal",
-      "ctrl-w ctrl-n": "workspace::NewFileSplitHorizontal",
-      "ctrl-w d": "editor::GoToDefinitionSplit",
-      "ctrl-w g d": "editor::GoToDefinitionSplit",
-      "ctrl-w shift-d": "editor::GoToTypeDefinitionSplit",
-      "ctrl-w g shift-d": "editor::GoToTypeDefinitionSplit",
-      "ctrl-w space": "editor::OpenExcerptsSplit",
-      "ctrl-w g space": "editor::OpenExcerptsSplit"
+      "f11": "zed::ToggleFullScreen"
     }
   },
   {
@@ -160,7 +109,7 @@
       // "ctrl-shift-e": ["editor::SelectToEndOfLine", { "stop_at_soft_wraps": true }],
       // "alt-v": ["editor::MovePageUp", { "center_cursor": true }],
       "ctrl-alt-space": "editor::ShowCharacterPalette",
-      "ctrl-;": "editor::ToggleLineNumbers",
+      //"ctrl-;": "editor::ToggleLineNumbers",
       "ctrl-k ctrl-r": "editor::RevertSelectedHunks",
       "ctrl-'": "editor::ToggleHunkDiff",
       "ctrl-\"": "editor::ExpandAllHunkDiffs",
@@ -433,7 +382,6 @@
       "ctrl-n": "workspace::NewFile",
       "ctrl-shift-n": "workspace::NewWindow",
       "ctrl-`": "terminal_panel::ToggleFocus",
-      "`": "workspace::ToggleBottomDock",
       "alt-1": ["workspace::ActivatePane", 0],
       "alt-2": ["workspace::ActivatePane", 1],
       "alt-3": ["workspace::ActivatePane", 2],
@@ -476,7 +424,8 @@
       "ctrl-k shift-down": ["workspace::SwapPaneInDirection", "Down"],
       "ctrl-shift-x": "zed::Extensions",
       "alt-t": "task::Rerun",
-      "alt-shift-t": "task::Spawn"
+      "alt-shift-t": "task::Spawn",
+      "`": "workspace::ToggleBottomDock"
     }
   },
   // Bindings from Sublime Text
@@ -731,7 +680,8 @@
       "shift-up": "terminal::ScrollLineUp",
       "shift-down": "terminal::ScrollLineDown",
       "shift-home": "terminal::ScrollToTop",
-      "shift-end": "terminal::ScrollToBottom"
+      "shift-end": "terminal::ScrollToBottom",
+      "`": "workspace::ToggleBottomDock"
     }
   },
   {
@@ -747,6 +697,7 @@
     "bindings": {
       "i": ["vim::PushOperator", { "Object": { "around": false } }],
       "a": ["vim::PushOperator", { "Object": { "around": true } }],
+      "`": "workspace::ToggleBottomDock",
       "h": "vim::Left",
       "left": "vim::Left",
       "backspace": "vim::Backspace",

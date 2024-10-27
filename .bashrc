@@ -263,6 +263,7 @@ export PATH=/opt/cuda/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/opt/cuda/lib64
 
 export KDE_SESSION_VERSION="5"
+export QT_QPA_PLATFORMTHEME="qt6ct"
 
 # Default editor
 # export EDITOR=/home/timo/.local/share/cargo/bin/hx
