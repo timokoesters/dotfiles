@@ -19,12 +19,12 @@
   },
   "gutter": { "code_actions": false, "folds": false },
   "toolbar": { "quick_actions": false },
-  "buffer_font_family": "Inconsolata",
+  "buffer_font_family": "Source Code Pro",
   "tab_bar": { "show_nav_history_buttons": false },
   "tabs": { "git_status": true },
   //"buffer_font_weight": 600,
   "cursor_blink": false,
-  "ui_font_family": "Charter",
+  "ui_font_family": "Source Serif Pro",
   //"ui_font_weight": 600,
   "ui_font_size": 16,
   "soft_wrap": "preferred_line_length",
@@ -47,7 +47,7 @@
   "assistant": { "enabled": false, "version": "2" },
   "terminal": {
     "button": false,
-    "font_family": "Inconsolata",
+    "font_family": "Source Code Pro",
     //"font_weight": 600,
     "blinking": "off",
     "cursor_shape": "bar"
