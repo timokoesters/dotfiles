@@ -424,8 +424,7 @@
       "ctrl-k shift-down": ["workspace::SwapPaneInDirection", "Down"],
       "ctrl-shift-x": "zed::Extensions",
       "alt-t": "task::Rerun",
-      "alt-shift-t": "task::Spawn",
-      "`": "workspace::ToggleBottomDock"
+      "alt-shift-t": "task::Spawn"
     }
   },
   // Bindings from Sublime Text
@@ -680,8 +679,7 @@
       "shift-up": "terminal::ScrollLineUp",
       "shift-down": "terminal::ScrollLineDown",
       "shift-home": "terminal::ScrollToTop",
-      "shift-end": "terminal::ScrollToBottom",
-      "`": "workspace::ToggleBottomDock"
+      "shift-end": "terminal::ScrollToBottom"
     }
   },
   {
@@ -689,7 +687,8 @@
     "context": "Terminal",
     "bindings": {
       "ctrl-shift-c": "terminal::Copy",
-      "ctrl-shift-v": "terminal::Paste"
+      "ctrl-shift-v": "terminal::Paste",
+      "`": "workspace::ToggleBottomDock"
     }
   },
   {
