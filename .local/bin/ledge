@@ -1,0 +1,72 @@
+#!/usr/bin/env python3
+import sys
+import subprocess
+import os
+import stat
+
+# To Do:
+# ======
+# Optionally move these steps to a function which initially checks for an environment variable flag,
+# or an MD5 sum from the directory.
+
+# Universally Reachable Repository
+ledger_pre = f"{os.environ.get('HOME')}/Documents/ledgers"
+ledger_path = f"{ledger_pre}/.index.md"
+
+
+if not os.path.exists(ledger_pre):
+    os.system(f"mkdir -p {ledger_pre}")
+
+if len(sys.argv) < 2:
+    desired_name = f"{ledger_path}/.ledger"
+else:
+    desired_name = f"{ledger_path}/.{sys.argv[1]}"
+
+runtime_decl = ""
+
+if desired_name[-1] == '.':
+    from contexlib import suppress
+    # Then no entry leaf was supplied via STDIN
+    with suppress(KeyboardInterrupt):
+        while True:
+            given = input("Please specify a ledger name or enter `nil` to quit: ")
+            if given == "nil": sys.exit(0)
+            if not given:
+                continue
+            runtime_decl += given.replace(' ', '-')
+
+desired_name += runtime_decl
+
+if not os.path.exists(desired_name):
+
+    # Add handling for injecting extra comment characters in case of Rust syntax
+    
+    prefix = ''
+    
+    if desired_name.find('.rs') > 0:
+        prefix += '// '
+    
+    num_dashes = len(sys.argv[1])
+    dash_string = prefix + sys.argv[1] + "\n"
+    dash_string = prefix + dash_string
+    underline = ''
+    underline += prefix
+    
+    for dash in range(num_dashes):
+        underline += '-'
+        # dash_string += "-"
+    
+    dash_string = dash_string + underline
+    dash_string += "\n"
+    with open(desired_name, "w") as f:
+        f.write(dash_string)
+
+if "EDITOR" not in os.environ:
+    sys.exit(0)
+
+executable = os.environ.get("EDITOR")
+
+if not bool(os.stat(executable).st_mode & stat.S_IRGRP): 
+    raise ChildProcessError(f"Cannot invoke `{executable}` with the given permission bit at the current run-level")
+
+sys.exit(subprocess.call([, desired_name]))
