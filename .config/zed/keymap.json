@@ -19,8 +19,13 @@
       "g e": "vim::EndOfDocument",
       "g h": "vim::FirstNonWhitespace",
       "g l": "vim::EndOfLine",
+      "g r": "editor::FindAllReferences",
+      "m m": "vim::Matching",
       "%": "editor::SelectAll",
-      "space d": "editor::GoToDiagnostic"
+      "space f": "file_finder::Toggle",
+      "space d": "editor::GoToDiagnostic",
+      "space k": "editor::Hover",
+      "space a": "editor::ToggleCodeActions"
     }
   },
   {
