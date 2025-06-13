@@ -26,7 +26,7 @@
   "tabs": { "git_status": true },
   //"buffer_font_weight": 600,
   "cursor_blink": false,
-  "ui_font_family": "Noto Sans",
+  "ui_font_family": "Inter",
   //"ui_font_weight": 600,
   "ui_font_size": 16,
   "soft_wrap": "preferred_line_length",

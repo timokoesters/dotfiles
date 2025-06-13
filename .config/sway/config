@@ -138,6 +138,7 @@ bindsym $mod+Control+c exec $term -e cava
 bindsym $mod+Control+n exec $term -e "nvim $HOME/Documents/notes.txt"
 
 bindsym $mod+Escape exec swaylock
+bindswitch --reload --locked lid:on exec swaylock -c 222222ff
 
 # Start terminal
 bindsym $mod+Return exec $term
@@ -195,7 +196,7 @@ bindsym --release Insert exec killall -USR2 askthebot
 # Bind caps lock
 # Abuses https://github.com/swaywm/sway/issues/7549
 bindcode --input-device=1133:49970:Logitech_Gaming_Mouse_G502_Keyboard 63 exec mumble rpc togglemute
- 
+
 # Reload configuration
 bindsym $mod+Shift+c reload
 

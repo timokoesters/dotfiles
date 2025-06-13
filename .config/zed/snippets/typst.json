@@ -1,7 +1,7 @@
 {
   "article": {
     "prefix": "article",
-    "body": "#import \"@local/article:0.1.0\": *\n\n#show: article.with(\n  title: \"$1\",\n  author: (\"Timo Kösters <timo@koesters.xyz>\",),\n  lang: (\"en\", \"US\"),\n  //lang: (\"de\", \"DE\")\n)\n\n$2",
+    "body": "#import \"@local/article:0.1.0\": *\n\n#show: article.with(\n  title: \"$1\",\n  author: (\"Timo Kösters <timo@koesters.xyz>\",),\n  lang: (\"en\", \"US\"),\n  //lang: (\"de\", \"DE\")\n  print: false,\n)\n\n$2",
     "description": "Typst Article Template"
   },
 

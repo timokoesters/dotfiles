@@ -292,7 +292,7 @@ export GNUPGHOME="$XDG_CONFIG_HOME"/gnupg
 export LESSKEY="$XDG_CONFIG_HOME"/less/lesskey
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export CARGO_HOME="$XDG_DATA_HOME"/cargo
-export RUST_BACKTRACE=1
+# export RUST_BACKTRACE=1
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="$XDG_CONFIG_HOME"/android
 

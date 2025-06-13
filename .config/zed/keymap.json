@@ -25,7 +25,10 @@
       "space f": "file_finder::Toggle",
       "space d": "editor::GoToDiagnostic",
       "space k": "editor::Hover",
-      "space a": "editor::ToggleCodeActions"
+      "space a": "editor::ToggleCodeActions",
+      "space t c": ["task::Spawn", { "task_name": "Compile Typst" }],
+      "space t f": ["task::Spawn", { "task_name": "Compile Typst Firefox" }],
+      "ctrl-c": ["editor::ToggleComments", { "advance_downwards": false }]
     }
   },
   {
